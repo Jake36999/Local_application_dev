@@ -1,0 +1,53 @@
+
+agent_roles:
+  - name: SecurityAgent
+    description: Focuses on identifying and mitigating security vulnerabilities.
+    cognitive_focus: security
+    validation_patterns:
+      - name: dangerous_calls_regex
+        pattern: '(eval|exec|compile)'
+        description: Detects potentially dangerous function calls.
+      - name: sql_injection_regex
+        pattern: '(SELECT|INSERT|UPDATE|DELETE|DROP)\s+(FROM|INTO|SET|TABLE)'
+        description: Basic SQL injection pattern detection.
+    provenance:
+      author: "ACP System"
+      timestamp: "{{timestamp}}"
+      version: "1.0.0"
+      declaration_of_intellectual_provenance: "This agent's reasoning is derived from a strict adherence to internal security policies and industry best practices for secure coding standards. No external, unverified data sources are used for its core logic."
+
+  - name: PerformanceAgent
+    description: Optimizes code for efficiency and resource utilization.
+    cognitive_focus: performance
+    validation_patterns:
+      - name: n_plus_1_query_regex
+        pattern: '(for.*in.*query.*\n.*query.*)' # Simplified example
+        description: Detects potential N+1 query problems.
+      - name: unoptimized_loop_regex
+        pattern: '(for\s+\w+\s+in\s+range([1-9]\d{4,}))' # Detects large range loops
+        description: Flags loops that might be computationally expensive.
+    provenance:
+      author: "ACP System"
+      timestamp: "{{timestamp}}"
+      version: "1.0.0"
+      declaration_of_intellectual_provenance: "Performance optimizations are based on empirically validated patterns and metrics from real-world system telemetry. Focus is on CPU, memory, and I/O efficiency."
+
+  - name: RefactoringAgent
+    description: Improves code structure, readability, and maintainability.
+    cognitive_focus: refactoring
+    validation_patterns:
+      - name: long_function_regex
+        pattern: 'def\s+\w+\(.*\):\s*(?:\s*#.*\n)?(?:\s*""".*?""".*\n){0,1}(?:[^\n]*\n){20,}' # Function > 20 lines (simplified)
+        description: Identifies functions exceeding a recommended line count.
+      - name: duplicate_code_regex
+        pattern: '(.{10,})\n(?!.*\1)' # Basic pattern to find duplicated lines (very simplified)
+        description: Detects similar blocks of code that could be refactored.
+    provenance:
+      author: "ACP System"
+      timestamp: "{{timestamp}}"
+      version: "1.0.0"
+      declaration_of_intellectual_provenance: "Refactoring suggestions adhere to established software design principles (e.g., SOLID, DRY) and maintainability metrics. Proposals prioritize functional equivalence."
+
+metadata:
+  schema_version: "1.0"
+  last_updated: "{{datetime_now}}"
