@@ -1,0 +1,28 @@
+{
+  "last_scan": "2026-02-02T11:04:24.421174",
+  "total_files_processed": 0,
+  "total_files_failed": 3,
+  "scans": [
+    {
+      "scan_id": "38c2749c",
+      "timestamp": "2026-02-02T03:08:19.069634",
+      "filename": "canon_db.py",
+      "status": "FAILED",
+      "input_method": "direct_filepath"
+    },
+    {
+      "scan_id": "b7fd1f98",
+      "timestamp": "2026-02-02T11:03:58.323487",
+      "filename": "canon_db.py",
+      "status": "FAILED",
+      "input_method": "direct_filepath"
+    },
+    {
+      "scan_id": "4cefb670",
+      "timestamp": "2026-02-02T11:04:24.421174",
+      "filename": "canon_db.py",
+      "status": "FAILED",
+      "input_method": "direct_filepath"
+    }
+  ]
+}

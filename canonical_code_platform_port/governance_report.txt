@@ -1,0 +1,1822 @@
+
+======================================================================
+GOVERNANCE REPORT - GATE-CHECK ANALYSIS
+======================================================================
+Generated: 2026-02-03T00:05:07.891469
+
+[SUMMARY]
+  Total Violations: 445
+  Errors (BLOCKING):   3
+  Warnings (ADVISORY): 0
+  Info (INFORMATIONAL): 0
+
+[GATE STATUS] FAIL
+  Cannot proceed: 3 blocking error(s) found
+
+======================================================================
+[VIOLATIONS BY CATEGORY]
+======================================================================
+
+Code Quality (R001_NO_GLOBAL_WRITE)
+-----------------------------------
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_logs (function, lines 179-187)
+     Message:   Component 'render_logs' modifies global variable 'logs'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: STATE_LOCK (assignment, lines 23-23)
+     Message:   Component 'assign: STATE_LOCK' modifies global variable 'STATE_LOCK'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'job_id'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'event_msg'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'response'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'status'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'watcher_active'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'events'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_orchestrator_status (function, lines 125-167)
+     Message:   Component 'render_orchestrator_status' modifies global variable 'swarm_nodes'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 177-184)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 177-184)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'stack'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 177-184)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'n'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'rank_report'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'keywords_lower'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'stack'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'node'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'path_lower'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.deep_scan_and_rank (function, lines 366-382)
+     Message:   Component 'FileManager.deep_scan_and_rank' modifies global variable 'matches'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: PROCESS_MONITOR_HISTORY (assignment, lines 41-41)
+     Message:   Component 'assign: PROCESS_MONITOR_HISTORY' modifies global variable 'PROCESS_MONITOR_HISTORY'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: MerkleVerifier.compute_merkle_root (function, lines 120-131)
+     Message:   Component 'MerkleVerifier.compute_merkle_root' modifies global variable 'tree'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: MerkleVerifier.compute_merkle_root (function, lines 120-131)
+     Message:   Component 'MerkleVerifier.compute_merkle_root' modifies global variable 'temp_tree'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: MerkleVerifier.compute_merkle_root (function, lines 120-131)
+     Message:   Component 'MerkleVerifier.compute_merkle_root' modifies global variable 'left'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: MerkleVerifier.compute_merkle_root (function, lines 120-131)
+     Message:   Component 'MerkleVerifier.compute_merkle_root' modifies global variable 'right'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: MerkleVerifier.compute_merkle_root (function, lines 120-131)
+     Message:   Component 'MerkleVerifier.compute_merkle_root' modifies global variable 'combined'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'job_id'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'filename'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'filepath'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'parsed_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'query_params'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'scan_uid'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'summary_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_results_request' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_treemap (function, lines 266-285)
+     Message:   Component 'render_file_treemap' modifies global variable 'root_node'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_treemap (function, lines 266-285)
+     Message:   Component 'render_file_treemap' modifies global variable 'total_size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_treemap (function, lines 266-285)
+     Message:   Component 'render_file_treemap' modifies global variable 'html_code'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: ARP_POLL_INTERVAL_SEC (assignment, lines 55-55)
+     Message:   Component 'assign: ARP_POLL_INTERVAL_SEC' modifies global variable 'ARP_POLL_INTERVAL_SEC'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'current_threads'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'monitor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'm_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'scanner_fm'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 's_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'db_man'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'net_man'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'n_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'arp_watch'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Component 'ensure_background_threads_running' modifies global variable 'a_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: CH (assignment, lines 24-24)
+     Message:   Component 'assign: CH' modifies global variable 'CH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 262-283)
+     Message:   Component 'main' modifies global variable 'monitor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 262-283)
+     Message:   Component 'main' modifies global variable 'fm'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 262-283)
+     Message:   Component 'main' modifies global variable 't1'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 262-283)
+     Message:   Component 'main' modifies global variable 't2'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 262-283)
+     Message:   Component 'main' modifies global variable 't3'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'secure_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'name'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'subtrees'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'total_size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 268-292)
+     Message:   Component 'TMTree.from_path' modifies global variable 'subtree'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'already_processed'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'current_files'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'new_files'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: monitor_thread_target (function, lines 188-200)
+     Message:   Component 'monitor_thread_target' modifies global variable 'db'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: monitor_thread_target (function, lines 188-200)
+     Message:   Component 'monitor_thread_target' modifies global variable 'metrics'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: monitor_thread_target (function, lines 188-200)
+     Message:   Component 'monitor_thread_target' modifies global variable 'elapsed'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'config_mgr'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'config'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'scanner'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'scan_results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'summary_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Component 'DirectoryBundler.run_quick_analysis' modifies global variable 'metadata'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'alerts'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'swarm_nodes'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'target_node'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'metrics'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'history'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main (function, lines 24-59)
+     Message:   Component 'main' modifies global variable 'node'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DATA_LOCK (assignment, lines 33-33)
+     Message:   Component 'assign: DATA_LOCK' modifies global variable 'DATA_LOCK'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_scan_request (function, lines 773-802)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_scan_request' modifies global variable 'content_length'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_scan_request (function, lines 773-802)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_scan_request' modifies global variable 'post_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_scan_request (function, lines 773-802)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_scan_request' modifies global variable 'config'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_scan_request (function, lines 773-802)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_scan_request' modifies global variable 'scan_uid'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_scan_request (function, lines 773-802)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_scan_request' modifies global variable 'response'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DB_PATH (assignment, lines 59-59)
+     Message:   Component 'assign: DB_PATH' modifies global variable 'DB_PATH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'config_mgr'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'config'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'scanner'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'scan_results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'summary_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'analyzer'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'analysis_results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'chunk_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'modified'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'analysis'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'lmstudio'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'lmstudio_results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'manifest_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Component 'DirectoryBundler.run_full_analysis' modifies global variable 'metadata'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: watcher_thread (assignment, lines 17-17)
+     Message:   Component 'assign: watcher_thread' modifies global variable 'watcher_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'base'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'cwd'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'target'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'target_str'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'base_candidates'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: resolve_path_secure (function, lines 70-98)
+     Message:   Component 'resolve_path_secure' modifies global variable 'is_safe'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: PROCESS_MONITOR_HISTORY (assignment, lines 57-57)
+     Message:   Component 'assign: PROCESS_MONITOR_HISTORY' modifies global variable 'PROCESS_MONITOR_HISTORY'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_status (function, lines 28-32)
+     Message:   Component 'get_status' modifies global variable 'now'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_status (function, lines 28-32)
+     Message:   Component 'get_status' modifies global variable 'active'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: MONITOR_INTERVAL_SEC (assignment, lines 37-37)
+     Message:   Component 'assign: MONITOR_INTERVAL_SEC' modifies global variable 'MONITOR_INTERVAL_SEC'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: app (assignment, lines 9-9)
+     Message:   Component 'assign: app' modifies global variable 'app'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: TARGET_DIR (assignment, lines 8-8)
+     Message:   Component 'assign: TARGET_DIR' modifies global variable 'TARGET_DIR'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'already_processed'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'current_files'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Component 'ProvenanceWatcher.start_watching' modifies global variable 'new_files'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'processed_count'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'chunk_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'modified'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'files_list'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'static_info'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'code_snippet'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'prompt'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Component 'LMStudioIntegration.process_with_lmstudio' modifies global variable 'ai_analysis'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager._get_file_hash (function, lines 329-335)
+     Message:   Component 'FileManager._get_file_hash' modifies global variable 'hasher'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'arp_df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'online_count'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'total_tracked'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'scan_time'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'device_list'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_network_intel (function, lines 288-344)
+     Message:   Component 'render_network_intel' modifies global variable 'display_df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: shred_file (function, lines 100-115)
+     Message:   Component 'shred_file' modifies global variable 'file_size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SCANNER_INTERVAL_SEC (assignment, lines 38-38)
+     Message:   Component 'assign: SCANNER_INTERVAL_SEC' modifies global variable 'SCANNER_INTERVAL_SEC'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'base_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'ignore_dirs'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'binary_extensions'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'directory_structure'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'current_chunk'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'chunk_index'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'current_size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'file_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'raw_content'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'file_size_mb'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'file_info'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Component 'EnhancedDeepScanner.scan_directory' modifies global variable 'chunk_filename'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_try (try, lines 472-479)
+     Message:   Component 'block_try' modifies global variable 'ConnectBox'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: TARGET_DIR (assignment, lines 8-8)
+     Message:   Component 'assign: TARGET_DIR' modifies global variable 'TARGET_DIR'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_system_metrics (function, lines 189-207)
+     Message:   Component 'render_system_metrics' modifies global variable 'cols'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_system_metrics (function, lines 189-207)
+     Message:   Component 'render_system_metrics' modifies global variable 'current_metrics'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_system_metrics (function, lines 189-207)
+     Message:   Component 'render_system_metrics' modifies global variable 'min_len'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_system_metrics (function, lines 189-207)
+     Message:   Component 'render_system_metrics' modifies global variable 'df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: POLL_INTERVAL (assignment, lines 10-10)
+     Message:   Component 'assign: POLL_INTERVAL' modifies global variable 'POLL_INTERVAL'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_history_request (function, lines 751-771)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_history_request' modifies global variable 'index_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_history_request (function, lines 751-771)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_history_request' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: TREEMAP_CANVAS_SIZE (assignment, lines 58-58)
+     Message:   Component 'assign: TREEMAP_CANVAS_SIZE' modifies global variable 'TREEMAP_CANVAS_SIZE'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SHUTDOWN_EVENT (assignment, lines 50-50)
+     Message:   Component 'assign: SHUTDOWN_EVENT' modifies global variable 'SHUTDOWN_EVENT'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest (function, lines 35-56)
+     Message:   Component 'ingest' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest (function, lines 35-56)
+     Message:   Component 'ingest' modifies global variable 'hostname'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest (function, lines 35-56)
+     Message:   Component 'ingest' modifies global variable 'cpu'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest (function, lines 35-56)
+     Message:   Component 'ingest' modifies global variable 'ram'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest (function, lines 35-56)
+     Message:   Component 'ingest' modifies global variable 'ts'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.serve_static_file (function, lines 865-915)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.serve_static_file' modifies global variable 'file_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.serve_static_file (function, lines 865-915)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.serve_static_file' modifies global variable 'content'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.serve_static_file (function, lines 865-915)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.serve_static_file' modifies global variable 'content_type'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.serve_static_file (function, lines 865-915)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.serve_static_file' modifies global variable 'fallback_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.start_web_server (function, lines 675-679)
+     Message:   Component 'DirectoryBundler.start_web_server' modifies global variable 'api_handler'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog.scan_cycle (function, lines 438-463)
+     Message:   Component 'ArpWatchdog.scan_cycle' modifies global variable 'new_map'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog.scan_cycle (function, lines 438-463)
+     Message:   Component 'ArpWatchdog.scan_cycle' modifies global variable 'alerts'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog.scan_cycle (function, lines 438-463)
+     Message:   Component 'ArpWatchdog.scan_cycle' modifies global variable 'inverted_map'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog.scan_cycle (function, lines 438-463)
+     Message:   Component 'ArpWatchdog.scan_cycle' modifies global variable 'existing'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: STATE_LOCK (assignment, lines 13-13)
+     Message:   Component 'assign: STATE_LOCK' modifies global variable 'STATE_LOCK'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'use_simulation'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'fake_macs'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'live_devices'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'tx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'rx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'device_info'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'existing'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'client'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'devices'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'mac'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'curr_tx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'curr_rx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'prev_stats'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'delta_tx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'delta_rx'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager._stealth_poll_cycle (function, lines 507-594)
+     Message:   Component 'NetworkManager._stealth_poll_cycle' modifies global variable 'existing_inventory'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner._format_content_block (function, lines 150-160)
+     Message:   Component 'EnhancedDeepScanner._format_content_block' modifies global variable 'lines'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration._lmstudio_inference (function, lines 321-370)
+     Message:   Component 'LMStudioIntegration._lmstudio_inference' modifies global variable 'prompt'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration._lmstudio_inference (function, lines 321-370)
+     Message:   Component 'LMStudioIntegration._lmstudio_inference' modifies global variable 'response'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration._lmstudio_inference (function, lines 321-370)
+     Message:   Component 'LMStudioIntegration._lmstudio_inference' modifies global variable 'result'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: analyze_crash (function, lines 8-60)
+     Message:   Component 'analyze_crash' modifies global variable 'conn'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: analyze_crash (function, lines 8-60)
+     Message:   Component 'analyze_crash' modifies global variable 'cursor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: analyze_crash (function, lines 8-60)
+     Message:   Component 'analyze_crash' modifies global variable 'rows'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: analyze_crash (function, lines 8-60)
+     Message:   Component 'analyze_crash' modifies global variable 'row'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 202-221)
+     Message:   Component 'scanner_thread_target' modifies global variable 'report'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 202-221)
+     Message:   Component 'scanner_thread_target' modifies global variable 'root'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 202-221)
+     Message:   Component 'scanner_thread_target' modifies global variable 'viz'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SHUTDOWN_EVENT (assignment, lines 34-34)
+     Message:   Component 'assign: SHUTDOWN_EVENT' modifies global variable 'SHUTDOWN_EVENT'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.setup_config (function, lines 497-525)
+     Message:   Component 'DirectoryBundler.setup_config' modifies global variable 'mode_choice'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.setup_config (function, lines 497-525)
+     Message:   Component 'DirectoryBundler.setup_config' modifies global variable 'lm_choice'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.setup_config (function, lines 497-525)
+     Message:   Component 'DirectoryBundler.setup_config' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DB_NAME (assignment, lines 10-10)
+     Message:   Component 'assign: DB_NAME' modifies global variable 'DB_NAME'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: ORCHESTRATOR_PORT (assignment, lines 9-9)
+     Message:   Component 'assign: ORCHESTRATOR_PORT' modifies global variable 'ORCHESTRATOR_PORT'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'monitor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'm_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'scanner_fm'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 's_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'db_man'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'net_man'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'n_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'arp_watch'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: start_background_threads (function, lines 611-652)
+     Message:   Component 'start_background_threads' modifies global variable 'a_thread'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager._get_file_hash (function, lines 104-110)
+     Message:   Component 'FileManager._get_file_hash' modifies global variable 'hasher'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: ROUTER_IP (assignment, lines 40-40)
+     Message:   Component 'assign: ROUTER_IP' modifies global variable 'ROUTER_IP'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SWARM_STATE (assignment, lines 12-12)
+     Message:   Component 'assign: SWARM_STATE' modifies global variable 'SWARM_STATE'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: dispatch_command (function, lines 80-89)
+     Message:   Component 'dispatch_command' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: dispatch_command (function, lines 80-89)
+     Message:   Component 'dispatch_command' modifies global variable 'target'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: dispatch_command (function, lines 80-89)
+     Message:   Component 'dispatch_command' modifies global variable 'action'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 157-175)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'curr_x'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 157-175)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'sw'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 157-175)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'curr_y'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 157-175)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'sh'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: watcher (assignment, lines 24-24)
+     Message:   Component 'assign: watcher' modifies global variable 'watcher'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: monitor_thread_target (function, lines 655-666)
+     Message:   Component 'monitor_thread_target' modifies global variable 'current_metrics'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: monitor_thread_target (function, lines 655-666)
+     Message:   Component 'monitor_thread_target' modifies global variable 'elapsed'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: MONITOR_INTERVAL_SEC (assignment, lines 53-53)
+     Message:   Component 'assign: MONITOR_INTERVAL_SEC' modifies global variable 'MONITOR_INTERVAL_SEC'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'job_id'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'filename'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'filepath'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_while (while, lines 16-36)
+     Message:   Component 'block_while' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 294-312)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'current_x'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 294-312)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'sub_width'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 294-312)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'current_y'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.update_rectangles (function, lines 294-312)
+     Message:   Component 'TMTree.update_rectangles' modifies global variable 'sub_height'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: log_message (function, lines 62-67)
+     Message:   Component 'log_message' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: log_message (function, lines 62-67)
+     Message:   Component 'log_message' modifies global variable 'full_msg'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'scanner'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'summary_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'analyzer'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'chunk_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'analysis'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'index_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'metadata'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.run_scan' modifies global variable 'current_index'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'job_id'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Component 'ProvenanceWatcher._process_artifact' modifies global variable 'event_msg'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.save_snapshot (function, lines 183-192)
+     Message:   Component 'SnapshotManager.save_snapshot' modifies global variable 'timestamp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.save_snapshot (function, lines 183-192)
+     Message:   Component 'SnapshotManager.save_snapshot' modifies global variable 'cursor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.save_snapshot (function, lines 183-192)
+     Message:   Component 'SnapshotManager.save_snapshot' modifies global variable 'snapshot_id'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DUPLICATE_SCAN_PATH (assignment, lines 39-39)
+     Message:   Component 'assign: DUPLICATE_SCAN_PATH' modifies global variable 'DUPLICATE_SCAN_PATH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'analysis'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'source_content'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'security_issues'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'secret_patterns'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'matches'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.full_analysis (function, lines 240-282)
+     Message:   Component 'AnalysisEngine.full_analysis' modifies global variable 'dangerous_patterns'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DATA_LOCK (assignment, lines 47-47)
+     Message:   Component 'assign: DATA_LOCK' modifies global variable 'DATA_LOCK'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'selected_paths'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'metrics_history'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'audit_report'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'treemap_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'progress'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'last_scan'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'network_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'network_last_scan'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'arp_table'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'security_alerts'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'progress_text'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: main_dashboard (function, lines 348-425)
+     Message:   Component 'main_dashboard' modifies global variable 'deep_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_status (function, lines 21-37)
+     Message:   Component 'get_status' modifies global variable 'current_time'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_status (function, lines 21-37)
+     Message:   Component 'get_status' modifies global variable 'active_nodes'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 57-78)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'cpu_percent'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 57-78)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'memory'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 57-78)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'net_new'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 57-78)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'sent_rate'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 57-78)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'recv_rate'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: FILE_MANAGER_UI (assignment, lines 31-31)
+     Message:   Component 'assign: FILE_MANAGER_UI' modifies global variable 'FILE_MANAGER_UI'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: logger (assignment, lines 28-28)
+     Message:   Component 'assign: logger' modifies global variable 'logger'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'last_gateway_mac'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'cmd'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'output'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'pattern'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'match'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'current_mac'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Component 'arp_watchdog_target' modifies global variable 'alert_msg'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.move_file_or_folder (function, lines 398-407)
+     Message:   Component 'FileManager.move_file_or_folder' modifies global variable 'src'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.move_file_or_folder (function, lines 398-407)
+     Message:   Component 'FileManager.move_file_or_folder' modifies global variable 'dst_folder'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.start_server (function, lines 692-706)
+     Message:   Component 'BundlerAPIHandler.start_server' modifies global variable 'handler'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_if (if, lines 993-1020)
+     Message:   Component 'block_if' modifies global variable 'bundler'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_if (if, lines 993-1020)
+     Message:   Component 'block_if' modifies global variable 'choice'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_if (if, lines 993-1020)
+     Message:   Component 'block_if' modifies global variable 'results'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_pending_command (function, lines 60-77)
+     Message:   Component 'get_pending_command' modifies global variable 'cmd_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_pending_command (function, lines 60-77)
+     Message:   Component 'get_pending_command' modifies global variable 'cursor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_pending_command (function, lines 60-77)
+     Message:   Component 'get_pending_command' modifies global variable 'row'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest_telemetry (function, lines 40-61)
+     Message:   Component 'ingest_telemetry' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ingest_telemetry (function, lines 40-61)
+     Message:   Component 'ingest_telemetry' modifies global variable 'hostname'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'wasted_bytes'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'wasted_mb'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'groups'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'group_options'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'selected_hash'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'selected_group'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'table_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_file_audit (function, lines 225-264)
+     Message:   Component 'render_file_audit' modifies global variable 'edited_df'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: LMStudioIntegration.check_connection (function, lines 313-319)
+     Message:   Component 'LMStudioIntegration.check_connection' modifies global variable 'response'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog._parse_arp_table (function, lines 416-436)
+     Message:   Component 'ArpWatchdog._parse_arp_table' modifies global variable 'current_map'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog._parse_arp_table (function, lines 416-436)
+     Message:   Component 'ArpWatchdog._parse_arp_table' modifies global variable 'output'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ArpWatchdog._parse_arp_table (function, lines 416-436)
+     Message:   Component 'ArpWatchdog._parse_arp_table' modifies global variable 'matches'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: watcher (assignment, lines 16-16)
+     Message:   Component 'assign: watcher' modifies global variable 'watcher'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DB_PATH (assignment, lines 43-43)
+     Message:   Component 'assign: DB_PATH' modifies global variable 'DB_PATH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.create_scan_directory (function, lines 527-531)
+     Message:   Component 'DirectoryBundler.create_scan_directory' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_integrity_status (function, lines 209-223)
+     Message:   Component 'render_integrity_status' modifies global variable 'merkle'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: render_integrity_status (function, lines 209-223)
+     Message:   Component 'render_integrity_status' modifies global variable 'status'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SWARM_STATE (assignment, lines 22-22)
+     Message:   Component 'assign: SWARM_STATE' modifies global variable 'SWARM_STATE'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'DEEP_SCAN_KEYWORDS'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'snapshot_mgr'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'start_scan'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'all_hashes'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'current_merkle_root'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'last_merkle_root'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'has_treemap'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'tree_root'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'viz_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'rank_report'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'elapsed_total'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: scanner_thread_target (function, lines 668-725)
+     Message:   Component 'scanner_thread_target' modifies global variable 'wait_time'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: EnhancedDeepScanner._save_chunk (function, lines 162-171)
+     Message:   Component 'EnhancedDeepScanner._save_chunk' modifies global variable 'chunk_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.quick_analysis (function, lines 181-238)
+     Message:   Component 'AnalysisEngine.quick_analysis' modifies global variable 'analysis'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.quick_analysis (function, lines 181-238)
+     Message:   Component 'AnalysisEngine.quick_analysis' modifies global variable 'source_to_parse'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.quick_analysis (function, lines 181-238)
+     Message:   Component 'AnalysisEngine.quick_analysis' modifies global variable 'tree'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.quick_analysis (function, lines 181-238)
+     Message:   Component 'AnalysisEngine.quick_analysis' modifies global variable 'module_name'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine.quick_analysis (function, lines 181-238)
+     Message:   Component 'AnalysisEngine.quick_analysis' modifies global variable 'dangerous_functions'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: handle_file_action (function, lines 96-122)
+     Message:   Component 'handle_file_action' modifies global variable 'success_count'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: handle_file_action (function, lines 96-122)
+     Message:   Component 'handle_file_action' modifies global variable 'failure_count'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.get_last_merkle_root (function, lines 173-181)
+     Message:   Component 'SnapshotManager.get_last_merkle_root' modifies global variable 'cursor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.get_last_merkle_root (function, lines 173-181)
+     Message:   Component 'SnapshotManager.get_last_merkle_root' modifies global variable 'row'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'cpu_percent'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'memory'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'net_new'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'now'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'time_diff'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'sent_rate'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SystemMonitor.update_metrics (function, lines 229-257)
+     Message:   Component 'SystemMonitor.update_metrics' modifies global variable 'recv_rate'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 141-155)
+     Message:   Component 'TMTree.from_path' modifies global variable 'subtrees'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 141-155)
+     Message:   Component 'TMTree.from_path' modifies global variable 'total'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.from_path (function, lines 141-155)
+     Message:   Component 'TMTree.from_path' modifies global variable 't'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.delete_file_or_folder (function, lines 384-396)
+     Message:   Component 'FileManager.delete_file_or_folder' modifies global variable 'secure_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: ORCHESTRATOR_IP (assignment, lines 8-8)
+     Message:   Component 'assign: ORCHESTRATOR_IP' modifies global variable 'ORCHESTRATOR_IP'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 314-326)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 314-326)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'stack'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: TMTree.to_visualization_data (function, lines 314-326)
+     Message:   Component 'TMTree.to_visualization_data' modifies global variable 'node'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_status_request (function, lines 804-830)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_status_request' modifies global variable 'parsed_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_status_request (function, lines 804-830)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_status_request' modifies global variable 'query_params'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_status_request (function, lines 804-830)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_status_request' modifies global variable 'scan_uid'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_status_request (function, lines 804-830)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_status_request' modifies global variable 'status'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: BundlerAPIHandler.create_handler.Handler.handle_status_request (function, lines 804-830)
+     Message:   Component 'BundlerAPIHandler.create_handler.Handler.handle_status_request' modifies global variable 'scan_dir'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: SCANNER_INTERVAL_SEC (assignment, lines 54-54)
+     Message:   Component 'assign: SCANNER_INTERVAL_SEC' modifies global variable 'SCANNER_INTERVAL_SEC'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 112-130)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'file_tracker'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 112-130)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 112-130)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'h'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 112-130)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'groups'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 112-130)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'wasted'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_try (try, lines 23-27)
+     Message:   Component 'block_try' modifies global variable 'psutil'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.update_global_index (function, lines 533-555)
+     Message:   Component 'DirectoryBundler.update_global_index' modifies global variable 'index_file'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: DirectoryBundler.update_global_index (function, lines 533-555)
+     Message:   Component 'DirectoryBundler.update_global_index' modifies global variable 'index_data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.save_network_log (function, lines 194-215)
+     Message:   Component 'SnapshotManager.save_network_log' modifies global variable 'now'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: SnapshotManager.save_network_log (function, lines 194-215)
+     Message:   Component 'SnapshotManager.save_network_log' modifies global variable 'cursor'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine._security_audit (function, lines 284-303)
+     Message:   Component 'AnalysisEngine._security_audit' modifies global variable 'issues'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: AnalysisEngine._security_audit (function, lines 284-303)
+     Message:   Component 'AnalysisEngine._security_audit' modifies global variable 'patterns'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: block_if (if, lines 727-741)
+     Message:   Component 'block_if' modifies global variable 'threads'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: TREEMAP_CANVAS_SIZE (assignment, lines 42-42)
+     Message:   Component 'assign: TREEMAP_CANVAS_SIZE' modifies global variable 'TREEMAP_CANVAS_SIZE'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ReportGenerator.generate_detailed_log (function, lines 465-480)
+     Message:   Component 'ReportGenerator.generate_detailed_log' modifies global variable 'log_entries'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ReportGenerator.generate_detailed_log (function, lines 465-480)
+     Message:   Component 'ReportGenerator.generate_detailed_log' modifies global variable 'entry'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'secure_root'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'file_tracker'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'file_path'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'file_size'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'file_hash'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'duplicate_groups'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'total_wasted'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'wasted'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: FileManager.find_duplicates (function, lines 337-364)
+     Message:   Component 'FileManager.find_duplicates' modifies global variable 'report'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DB_PATH (assignment, lines 6-6)
+     Message:   Component 'assign: DB_PATH' modifies global variable 'DB_PATH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: DUPLICATE_SCAN_PATH (assignment, lines 56-56)
+     Message:   Component 'assign: DUPLICATE_SCAN_PATH' modifies global variable 'DUPLICATE_SCAN_PATH'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ReportGenerator.generate_summary_report (function, lines 444-463)
+     Message:   Component 'ReportGenerator.generate_summary_report' modifies global variable 'summary'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: ReportGenerator.generate_summary_report (function, lines 444-463)
+     Message:   Component 'ReportGenerator.generate_summary_report' modifies global variable 'ext'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: assign: app (assignment, lines 8-8)
+     Message:   Component 'assign: app' modifies global variable 'app'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: get_swarm_data (function, lines 17-22)
+     Message:   Component 'get_swarm_data' modifies global variable 'resp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'hostname'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'base_url'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'ingest_url'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'command_url'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'payload'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'resp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'cmd_resp'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'data'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: run_agent (function, lines 20-57)
+     Message:   Component 'run_agent' modifies global variable 'cmd'.
+
+  [INF] R001_NO_GLOBAL_WRITE
+     Component: NetworkManager.start_loop (function, lines 596-608)
+     Message:   Component 'NetworkManager.start_loop' modifies global variable 'loop'.
+
+Phase 7 Governance (P7_G4_CIRCULAR)
+-----------------------------------
+
+  [ERR] P7_G4_CIRCULAR
+     Component: scanner_thread_target (function, lines 202-221)
+     Message:   Circular dependency detected: TMTree.from_path → TMTree.from_path
+
+  [ERR] P7_G4_CIRCULAR
+     Component: TMTree.update_rectangles (function, lines 157-175)
+     Message:   Circular dependency detected: TMTree.update_rectangles → TMTree.update_rectangles
+
+  [ERR] P7_G4_CIRCULAR
+     Component: TMTree.from_path (function, lines 141-155)
+     Message:   Circular dependency detected: TMTree.from_path → TMTree.from_path
+
+illegal_io
+----------
+
+  [INF] illegal_io
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Business logic performs IO: open, print, print
+
+  [INF] illegal_io
+     Component: SnapshotManager._init_db (function, lines 85-92)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: BundlerAPIHandler.create_handler.Handler.handle_results_request (function, lines 832-863)
+     Message:   Business logic performs IO: open
+
+  [INF] illegal_io
+     Component: ensure_background_threads_running (function, lines 36-90)
+     Message:   Business logic performs IO: print, print, print, print
+
+  [INF] illegal_io
+     Component: main (function, lines 262-283)
+     Message:   Business logic performs IO: print, print, print
+
+  [INF] illegal_io
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: DirectoryBundler.run_quick_analysis (function, lines 564-595)
+     Message:   Business logic performs IO: print, open, print
+
+  [INF] illegal_io
+     Component: DirectoryBundler.run_full_analysis (function, lines 597-673)
+     Message:   Business logic performs IO: print, open, open, open, print, open, print
+
+  [INF] illegal_io
+     Component: ProvenanceWatcher.start_watching (function, lines 43-57)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: LMStudioIntegration.process_with_lmstudio (function, lines 372-436)
+     Message:   Business logic performs IO: print, print, print, print, open, print, open, print, print
+
+  [INF] illegal_io
+     Component: FileManager._get_file_hash (function, lines 329-335)
+     Message:   Business logic performs IO: open
+
+  [INF] illegal_io
+     Component: shred_file (function, lines 100-115)
+     Message:   Business logic performs IO: open
+
+  [INF] illegal_io
+     Component: EnhancedDeepScanner.scan_directory (function, lines 66-148)
+     Message:   Business logic performs IO: print, print, open, print
+
+  [INF] illegal_io
+     Component: BundlerAPIHandler.create_handler.Handler.handle_history_request (function, lines 751-771)
+     Message:   Business logic performs IO: open, print
+
+  [INF] illegal_io
+     Component: ingest (function, lines 35-56)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: BundlerAPIHandler.create_handler.Handler.serve_static_file (function, lines 865-915)
+     Message:   Business logic performs IO: open, open, print
+
+  [INF] illegal_io
+     Component: DirectoryBundler.start_web_server (function, lines 675-679)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: analyze_crash (function, lines 8-60)
+     Message:   Business logic performs IO: print, print, print, print, print, print, print, print, print, print, print, print, print, print, print, print
+
+  [INF] illegal_io
+     Component: DirectoryBundler.setup_config (function, lines 497-525)
+     Message:   Business logic performs IO: print, print, print, print, input, print, print, print, input, print, print
+
+  [INF] illegal_io
+     Component: FileManager._get_file_hash (function, lines 104-110)
+     Message:   Business logic performs IO: open
+
+  [INF] illegal_io
+     Component: log_message (function, lines 62-67)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: BundlerAPIHandler.create_handler.Handler.run_scan (function, lines 917-988)
+     Message:   Business logic performs IO: open, open, open, open, open
+
+  [INF] illegal_io
+     Component: ProvenanceWatcher._process_artifact (function, lines 23-41)
+     Message:   Business logic performs IO: open, print, print
+
+  [INF] illegal_io
+     Component: test_func (function, lines 3-4)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: block_if.signal_handler (function, lines 728-730)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: arp_watchdog_target (function, lines 223-259)
+     Message:   Business logic performs IO: print, print, print
+
+  [INF] illegal_io
+     Component: BundlerAPIHandler.start_server (function, lines 692-706)
+     Message:   Business logic performs IO: print, print, print
+
+  [INF] illegal_io
+     Component: get_pending_command (function, lines 60-77)
+     Message:   Business logic performs IO: print
+
+  [INF] illegal_io
+     Component: EnhancedDeepScanner._save_chunk (function, lines 162-171)
+     Message:   Business logic performs IO: open
+
+  [INF] illegal_io
+     Component: DirectoryBundler.update_global_index (function, lines 533-555)
+     Message:   Business logic performs IO: open, open, print
+
+  [INF] illegal_io
+     Component: NetworkManager.__init__ (function, lines 483-499)
+     Message:   Business logic performs IO: print, print
+
+  [INF] illegal_io
+     Component: run_agent (function, lines 20-57)
+     Message:   Business logic performs IO: print, print, print, print, print, print, print, print
+
+======================================================================
+[RECOMMENDATIONS]
+======================================================================
+
+BLOCKING ERRORS - Required Action:
+
+  * Phase 7 Governance (P7_G4_CIRCULAR): 3 error(s)
+    - scanner_thread_target: Circular dependency detected: TMTree.from_path → T...
+    - TMTree.update_rectangles: Circular dependency detected: TMTree.update_rectan...
+    - TMTree.from_path: Circular dependency detected: TMTree.from_path → T...
+
+======================================================================
+END GOVERNANCE REPORT
+======================================================================
