@@ -1,0 +1,832 @@
+# Workspace Bundle: workspace_packager
+# Generated: 2026-02-03T15:00:59.824077Z
+# Tool: workspace_packager_v2.py (CLI)
+# Compliance Report:
+# - Axiom 1 (Traversal): os.scandir stack (active)
+# - Axiom 2 (Sanitization): binary guard + entropy redaction (active)
+# - Axiom 3 (Parsimony): AST summaries (active)
+# - Data Safety: .env/ignored dirs excluded; secrets redacted
+----------------------------------------
+--- FILE: drafts/workspace_bundler.py ---
+Size: 7739 bytes
+Summary: Classes: ParsimoniousExtractor, WorkspaceBundler; Functions: is_binary_file(filepath, null_byte_threshold, scan_bytes), __init__(self, source_code), _get_args(self, node), visit_FunctionDef(self, node), visit_AsyncFunctionDef(self, node)...
+Content: |
+  import ast
+  import datetime
+  import pathlib
+  import sys
+  import tkinter as tk
+  from tkinter import filedialog, messagebox
+  
+  IGNORE_DIRS = {
+      '.git', 'node_modules', '__pycache__', '.venv', 'env', 'dist', 'build',
+      '.idea', '.vscode', 'bundler_scans', 'site-packages', 'logs', 'tmp', '.env'
+  }
+  
+  IGNORE_EXTENSIONS = {
+      '.pyc', '.pyo', '.pyd', '.so', '.dll', '.exe', '.bin', '.png', '.jpg',
+      '.jpeg', '.gif', '.ico', '.pdf', '.zip', '.tar', '.gz', '.db', '.sqlite',
+      '.pkl', '.ds_store'
+  }
+  
+  MAX_FILE_SIZE_MB = 1.5
+  
+  
+  def is_binary_file(filepath: pathlib.Path, null_byte_threshold: float = 0.30, scan_bytes: int = 1024) -> bool:
+      """Heuristic binary detector that guards parsing."""
+      if not filepath.is_file():
+          return False
+      if filepath.suffix.lower() in IGNORE_EXTENSIONS:
+          return True
+  
+      try:
+          with open(filepath, 'rb') as f:
+              initial_bytes = f.read(scan_bytes)
+          if not initial_bytes:
+              return False
+          null_byte_count = initial_bytes.count(b'\x00')
+          ratio = null_byte_count / len(initial_bytes)
+          return ratio > null_byte_threshold
+      except Exception:
+          return True
+  
+  
+  class ParsimoniousExtractor(ast.NodeVisitor):
+      def __init__(self, source_code: str):
+          self.summary = []
+          self.source = source_code
+  
+      def _get_args(self, node):
+          args = [arg.arg for arg in node.args.args]
+          if node.args.vararg:
+              args.append(f"*{node.args.vararg.arg}")
+          if node.args.kwarg:
+              args.append(f"**{node.args.kwarg.arg}")
+          return args
+  
+      def visit_FunctionDef(self, node):
+          args = self._get_args(node)
+          doc = ast.get_docstring(node)
+          desc = f"Function: {node.name}({', '.join(args)})"
+          if doc:
+              clean_doc = doc.split('\n')[0].strip()[:80]
+              desc += f" - '{clean_doc}...'"
+          self.summary.append(desc)
+          self.generic_visit(node)
+  
+      def visit_AsyncFunctionDef(self, node):
+          self.visit_FunctionDef(node)
+  
+      def visit_ClassDef(self, node):
+          doc = ast.get_docstring(node)
+          desc = f"Class: {node.name}"
+          if doc:
+              clean_doc = doc.split('\n')[0].strip()[:80]
+              desc += f" - '{clean_doc}...'"
+          self.summary.append(desc)
+          self.generic_visit(node)
+  
+  
+  def traverse_project(root_path: str):
+      """Iterative stack-based traversal (Axiom 1)."""
+      path_obj = pathlib.Path(root_path)
+      if not path_obj.exists():
+          return
+  
+      stack = [path_obj]
+      while stack:
+          current = stack.pop()
+          if current.is_dir():
+              if current.name in IGNORE_DIRS or current.name.startswith('.'):
+                  continue
+              try:
+                  for child in sorted(current.iterdir(), reverse=True):
+                      stack.append(child)
+              except PermissionError:
+                  continue
+          elif current.is_file():
+              yield current
+  
+  
+  class WorkspaceBundler:
+      def __init__(self, root_path: str):
+          self.root_path = pathlib.Path(root_path).resolve()
+          self.bundle_data = {
+              "meta": {
+                  "generated_at": datetime.datetime.utcnow().isoformat(),
+                  "project_root": self.root_path.name,
+                  "tool_version": "2.1 (Aletheia GUI)"
+              },
+              "files": []
+          }
+  
+      def _format_compliance_report(self):
+          return [
+              "# Constitutional Compliance Report:",
+              "# - Axiom 1 (Traversal): COMPLIANT - iterative stack-based traversal.",
+              "# - Axiom 2 (Sanitization): COMPLIANT - binary/null-byte guard before reads.",
+              "# - Axiom 3 (Parsimony): COMPLIANT - AST summaries of functions/classes.",
+              "# - Data Safety: SECURE - git/node_modules/pycache/env ignored.",
+          ]
+  
+      def _generate_yaml(self):
+          lines = [
+              f"# Workspace Bundle: {self.bundle_data['meta']['project_root']}",
+              f"# Generated: {self.bundle_data['meta']['generated_at']}",
+              *self._format_compliance_report(),
+              "----------------------------------------",
+          ]
+  
+          for file_info in self.bundle_data['files']:
+              lines.append(f"--- FILE: {file_info['path']} ---")
+              lines.append(f"Size: {file_info['size']} bytes")
+              if file_info['summary']:
+                  lines.append(f"Summary: {', '.join(file_info['summary'])}")
+              else:
+                  lines.append("Summary: (none)")
+              lines.append("Content: |")
+              if file_info['content']:
+                  for line in file_info['content'].splitlines():
+                      lines.append(f"  {line}")
+              else:
+                  lines.append("  (empty file)")
+              lines.append("")
+  
+          return "\n".join(lines)
+  
+      def bundle(self):
+          print(f"Scanning Root: {self.root_path}")
+          file_count = 0
+  
+          for file_path in traverse_project(str(self.root_path)):
+              try:
+                  if is_binary_file(file_path):
+                      continue
+  
+                  if file_path.stat().st_size > (MAX_FILE_SIZE_MB * 1024 * 1024):
+                      print(f"Skipping large file: {file_path.name}")
+                      continue
+  
+                  try:
+                      with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                          content = f.read()
+                  except Exception:
+                      continue
+  
+                  summary = []
+                  if file_path.suffix == '.py':
+                      try:
+                          extractor = ParsimoniousExtractor(content)
+                          extractor.visit(ast.parse(content))
+                          summary = extractor.summary
+                      except SyntaxError:
+                          summary = ["(Syntax Error Detected)"]
+                      except Exception:
+                          pass
+  
+                  rel_path = file_path.relative_to(self.root_path)
+                  self.bundle_data["files"].append({
+                      "path": str(rel_path).replace("\\", "/"),
+                      "size": len(content),
+                      "summary": summary,
+                      "content": content
+                  })
+  
+                  file_count += 1
+                  if file_count % 20 == 0:
+                      sys.stdout.write(f"\rBundled {file_count} files...")
+                      sys.stdout.flush()
+              except Exception:
+                  continue
+  
+          print(f"\nComplete. Total files bundled: {file_count}")
+          return self._generate_yaml()
+  
+  
+  def run_gui():
+      root = tk.Tk()
+      root.withdraw()
+  
+      messagebox.showinfo("Workspace Bundler", "Select the Root Directory to Package.")
+      src_dir = filedialog.askdirectory(title="Select Root Directory")
+      if not src_dir:
+          return
+  
+      bundler = WorkspaceBundler(src_dir)
+      yaml_content = bundler.bundle()
+  
+      default_name = f"{pathlib.Path(src_dir).name}_bundle.yaml"
+      save_path = filedialog.asksaveasfilename(
+          title="Save Bundle As",
+          defaultextension=".yaml",
+          initialfile=default_name,
+          filetypes=[("YAML Files", "*.yaml"), ("All Files", "*.*")]
+      )
+      if not save_path:
+          return
+  
+      try:
+          with open(save_path, "w", encoding="utf-8") as f:
+              f.write(yaml_content)
+      except Exception as exc:
+          messagebox.showerror("Save Failed", f"Could not save bundle:\n{exc}")
+          return
+  
+      messagebox.showinfo("Success", f"Bundle saved to:\n{save_path}")
+  
+  
+  if __name__ == "__main__":
+      run_gui()
+
+--- FILE: workspace_packager_v2.py ---
+Size: 10790 bytes
+Summary: Classes: SecurityKernel, SemanticAnalyzer, WorkspacePackager; Functions: is_binary(filepath, scan_bytes), calculate_entropy(text), sanitize_content(content), __init__(self), _record_function(self, node)...
+Content: |
+  """
+  Aletheia Workspace Packager (CLI)
+  Purpose: Produce a YAML workspace bundle with safe traversal, entropy redaction, and import-aware ordering.
+  
+  Usage:
+      python workspace_packager_v2.py [target_dir] [-o output.yaml]
+  """
+  
+  import argparse
+  import ast
+  import datetime
+  import math
+  import os
+  import pathlib
+  import sys
+  from typing import Dict, List, Tuple
+  
+  IGNORE_DIRS = {
+      '.git', 'node_modules', '__pycache__', '.venv', 'env', 'venv', 'dist', 'build',
+      '.idea', '.vscode', 'bundler_scans', 'site-packages', 'logs', 'tmp', 'coverage',
+      '.pytest_cache', '.mypy_cache', '.env'
+  }
+  
+  IGNORE_EXTENSIONS = {
+      '.pyc', '.pyo', '.pyd', '.so', '.dll', '.exe', '.bin', '.png', '.jpg', '.jpeg',
+      '.gif', '.ico', '.pdf', '.zip', '.tar', '.gz', '.db', '.sqlite', '.pkl',
+      '.ds_store', '.woff', '.ttf', '.eot'
+  }
+  
+  MAX_FILE_SIZE_BYTES = 1_500_000
+  
+  
+  class SecurityKernel:
+      @staticmethod
+      def is_binary(filepath: str, scan_bytes: int = 2048) -> bool:
+          if any(filepath.lower().endswith(ext) for ext in IGNORE_EXTENSIONS):
+              return True
+          try:
+              with open(filepath, 'rb') as handle:
+                  chunk = handle.read(scan_bytes)
+              if not chunk:
+                  return False
+              if b'\x00' in chunk:
+                  return True
+              # Heuristic: high non-text ratio
+              text_chars = bytearray({7, 8, 9, 10, 12, 13, 27} | set(range(0x20, 0x7F)))
+              nontext = sum(byte not in text_chars for byte in chunk)
+              return (nontext / len(chunk)) > 0.40
+          except Exception:
+              return True
+  
+      @staticmethod
+      def calculate_entropy(text: str) -> float:
+          if not text:
+              return 0.0
+          entropy = 0.0
+          for idx in range(256):
+              p_x = float(text.count(chr(idx))) / len(text)
+              if p_x > 0:
+                  entropy -= p_x * math.log(p_x, 2)
+          return entropy
+  
+      @staticmethod
+      def sanitize_content(content: str) -> str:
+          sanitized: List[str] = []
+          for line in content.splitlines():
+              lowered = line.lower()
+              if any(key in lowered for key in ('api_key', 'secret', 'password', 'token', 'auth')) and '=' in line:
+                  parts = line.split('=', 1)
+                  if len(parts) == 2 and SecurityKernel.calculate_entropy(parts[1]) > 4.5:
+                      sanitized.append(f"{parts[0]}= [REDACTED]")
+                      continue
+              sanitized.append(line)
+          return "\n".join(sanitized)
+  
+  
+  class SemanticAnalyzer(ast.NodeVisitor):
+      def __init__(self) -> None:
+          self.summary: Dict[str, List[str]] = {"functions": [], "classes": []}
+          self.import_count = 0
+  
+      def _record_function(self, node: ast.AST) -> None:
+          args = self._args(node)
+          self.summary["functions"].append(f"{getattr(node, 'name', '<lambda>')}({', '.join(args)})")
+  
+      def _args(self, node: ast.AST) -> List[str]:
+          if not hasattr(node, 'args'):
+              return []
+          args = [arg.arg for arg in node.args.args]
+          if getattr(node.args, 'vararg', None):
+              args.append(f"*{node.args.vararg.arg}")
+          if getattr(node.args, 'kwarg', None):
+              args.append(f"**{node.args.kwarg.arg}")
+          return args
+  
+      def visit_Import(self, node: ast.Import) -> None:
+          self.import_count += len(node.names)
+          self.generic_visit(node)
+  
+      def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+          self.import_count += 1
+          self.generic_visit(node)
+  
+      def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+          self._record_function(node)
+          self.generic_visit(node)
+  
+      def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+          self._record_function(node)
+          self.generic_visit(node)
+  
+      def visit_ClassDef(self, node: ast.ClassDef) -> None:
+          self.summary["classes"].append(node.name)
+          self.generic_visit(node)
+  
+      @classmethod
+      def analyze(cls, content: str) -> Tuple[Dict[str, List[str]], int]:
+          analyzer = cls()
+          try:
+              tree = ast.parse(content)
+              analyzer.visit(tree)
+              return analyzer.summary, analyzer.import_count
+          except SyntaxError:
+              return {"functions": [], "classes": ["(Syntax Error Detected)"]}, 999
+          except Exception:
+              return {"functions": [], "classes": []}, 0
+  
+  
+  def discover_files(root: pathlib.Path) -> List[str]:
+      stack = [root]
+      files: List[str] = []
+      while stack:
+          current = stack.pop()
+          if not current.is_dir():
+              continue
+          try:
+              with os.scandir(current) as entries:
+                  ordered = sorted(entries, key=lambda entry: entry.name, reverse=True)
+                  for entry in ordered:
+                      if entry.name in IGNORE_DIRS or entry.name.startswith('.'):
+                          continue
+                      try:
+                          if entry.is_dir(follow_symlinks=False):
+                              stack.append(pathlib.Path(entry.path))
+                          elif entry.is_file(follow_symlinks=False):
+                              files.append(entry.path)
+                      except PermissionError:
+                          continue
+          except PermissionError:
+              continue
+      return files
+  
+  
+  class WorkspacePackager:
+      def __init__(self, root_path: pathlib.Path) -> None:
+          self.root_path = root_path.resolve()
+          self.files: List[Dict] = []
+          self.scan_stats = {"processed": 0, "skipped": 0, "errors": 0}
+  
+      def _compliance_header(self) -> List[str]:
+          return [
+              "# Compliance Report:",
+              "# - Axiom 1 (Traversal): os.scandir stack (active)",
+              "# - Axiom 2 (Sanitization): binary guard + entropy redaction (active)",
+              "# - Axiom 3 (Parsimony): AST summaries (active)",
+              "# - Data Safety: .env/ignored dirs excluded; secrets redacted",
+          ]
+  
+      def _generate_output(self) -> str:
+          lines: List[str] = [
+              f"# Workspace Bundle: {self.root_path.name}",
+              f"# Generated: {datetime.datetime.utcnow().isoformat()}Z",
+              f"# Tool: workspace_packager_v2.py (CLI)",
+          ]
+          lines.extend(self._compliance_header())
+          lines.append("----------------------------------------")
+  
+          for info in self.files:
+              lines.append(f"--- FILE: {info['path']} ---")
+              lines.append(f"Size: {info['size_bytes']} bytes")
+              if info['summary_line']:
+                  lines.append(f"Summary: {info['summary_line']}")
+              else:
+                  lines.append("Summary: (none)")
+              lines.append("Content: |")
+              content = info['content']
+              if content:
+                  for line in content.splitlines():
+                      lines.append(f"  {line}")
+              else:
+                  lines.append("  (empty file)")
+              lines.append("")
+  
+          return "\n".join(lines)
+  
+      def scan(self) -> str:
+          print(f"Scanning root: {self.root_path}")
+          candidates = discover_files(self.root_path)
+          total = len(candidates)
+          print(f"Found {total} candidates. Processing...")
+  
+          for idx, path_str in enumerate(candidates):
+              if idx % 25 == 0:
+                  sys.stdout.write(f"\rProcessed {idx}/{total} files...")
+                  sys.stdout.flush()
+              try:
+                  if SecurityKernel.is_binary(path_str):
+                      self.scan_stats['skipped'] += 1
+                      continue
+  
+                  path_obj = pathlib.Path(path_str)
+                  size = path_obj.stat().st_size
+                  if size > MAX_FILE_SIZE_BYTES:
+                      self.scan_stats['skipped'] += 1
+                      continue
+  
+                  try:
+                      with open(path_obj, 'r', encoding='utf-8', errors='ignore') as handle:
+                          raw_content = handle.read()
+                  except Exception:
+                      self.scan_stats['errors'] += 1
+                      continue
+  
+                  sanitized = SecurityKernel.sanitize_content(raw_content)
+  
+                  summary_line = ""
+                  complexity = 0
+                  if path_obj.suffix == '.py':
+                      summary, complexity = SemanticAnalyzer.analyze(raw_content)
+                      pieces: List[str] = []
+                      if summary.get('classes'):
+                          pieces.append("Classes: " + ", ".join(summary['classes'][:5]) + ("..." if len(summary['classes']) > 5 else ""))
+                      if summary.get('functions'):
+                          pieces.append("Functions: " + ", ".join(summary['functions'][:5]) + ("..." if len(summary['functions']) > 5 else ""))
+                      summary_line = "; ".join(pieces)
+  
+                  rel_path = path_obj.relative_to(self.root_path).as_posix()
+                  self.files.append({
+                      "path": rel_path,
+                      "size_bytes": size,
+                      "content": sanitized,
+                      "summary_line": summary_line,
+                      "complexity": complexity,
+                  })
+                  self.scan_stats['processed'] += 1
+              except Exception:
+                  self.scan_stats['errors'] += 1
+  
+          print("\nSorting by dependency heuristic...")
+          self.files.sort(key=lambda item: (item['complexity'], item['path']))
+          return self._generate_output()
+  
+  
+  def main() -> None:
+      parser = argparse.ArgumentParser(description="Aletheia Workspace Packager (CLI)")
+      parser.add_argument("path", nargs="?", default=".", help="Project root to package (default: current directory)")
+      parser.add_argument("-o", "--output", help="Output file name (default: <dirname>_bundle.yaml)")
+      args = parser.parse_args()
+  
+      root_path = pathlib.Path(args.path).resolve()
+      if not root_path.exists():
+          print(f"Error: path does not exist: {root_path}")
+          sys.exit(1)
+  
+      packager = WorkspacePackager(root_path)
+      yaml_bundle = packager.scan()
+  
+      out_name = args.output or f"{root_path.name}_bundle.yaml"
+      try:
+          with open(out_name, 'w', encoding='utf-8') as handle:
+              handle.write(yaml_bundle)
+      except Exception as exc:
+          print(f"Error writing output: {exc}")
+          sys.exit(1)
+  
+      print(f"Bundle written to: {pathlib.Path(out_name).resolve()}")
+      print(f"Stats: processed={packager.scan_stats['processed']}, skipped={packager.scan_stats['skipped']}, errors={packager.scan_stats['errors']}")
+  
+  
+  if __name__ == "__main__":
+      main()
+
+--- FILE: drafts/workspace_bundler_variant_2.py ---
+Size: 12242 bytes
+Summary: Classes: ParsimoniousExtractor, WorkspacePackager; Functions: calculate_entropy(text), is_binary_file(filepath, scan_bytes), __init__(self, source_code), _get_args(self, node), visit_Import(self, node)...
+Content: |
+  """
+  Aletheia Workspace Packager (CLI)
+  =================================
+  A high-performance, security-conscious tool to bundle codebases for LLM context.
+  
+  Usage:
+      python workspace_packager_v2.py [target_dir] [-o output.yaml]
+  
+  Features:
+      - Stack-based Iterative Traversal (os.scandir)
+      - Entropy-based Secret Redaction
+      - AST-based Metadata Extraction (Docstrings, Signatures)
+      - Topological Ordering (Dependencies first)
+      - Constitutional Compliance (Axioms 1-3)
+  """
+  
+  import os
+  import sys
+  import ast
+  import json
+  import uuid
+  import math
+  import hashlib
+  import pathlib
+  import datetime
+  import argparse
+  from typing import List, Set, Dict, Any, Tuple
+  
+  # ==============================================================================
+  # CONFIGURATION & CONSTANTS
+  # Source: LCD_port/directory_bundler_port/bundler_constants.py
+  # ==============================================================================
+  IGNORE_DIRS = {
+      '.git', 'node_modules', '__pycache__', '.venv', 'env', 'dist', 'build', 
+      '.idea', '.vscode', 'bundler_scans', 'site-packages', 'logs', 'tmp', 'coverage',
+      '.env'  # Explicit ignore for safety
+  }
+  IGNORE_EXTENSIONS = {
+      '.pyc', '.pyo', '.pyd', '.so', '.dll', '.exe', '.bin', '.png', '.jpg', 
+      '.jpeg', '.gif', '.ico', '.pdf', '.zip', '.tar', '.gz', '.db', '.sqlite',
+      '.pkl', '.ds_store', '.woff', '.ttf'
+  }
+  MAX_FILE_SIZE_MB = 1.5
+  
+  # ==============================================================================
+  # AXIOM 2: HEURISTICS (Sanitization & Security)
+  # Source: LCD_port/ACP_V1/scanner/heuristics.py + New Entropy Logic
+  # ==============================================================================
+  def calculate_entropy(text: str) -> float:
+      """
+      Calculates Shannon entropy to detect potential secrets (API Keys).
+      Range: 0.0 (low randomness) to ~8.0 (high randomness).
+      Typical English text is ~3.5-4.5. Keys are often > 4.5.
+      """
+      if not text: return 0
+      entropy = 0
+      for x in range(256):
+          p_x = float(text.count(chr(x))) / len(text)
+          if p_x > 0:
+              entropy += - p_x * math.log(p_x, 2)
+      return entropy
+  
+  def is_binary_file(filepath: str, scan_bytes: int = 1024) -> bool:
+      """
+      Detects if a file is likely binary by checking the ratio of null bytes.
+      Uses 'str' path for compatibility with os.scandir.
+      """
+      # Extension check
+      if any(filepath.endswith(ext) for ext in IGNORE_EXTENSIONS): return True
+  
+      try:
+          with open(filepath, 'rb') as f:
+              initial_bytes = f.read(scan_bytes)
+          if not initial_bytes: return False
+          null_byte_count = initial_bytes.count(b'\x00')
+          ratio = null_byte_count / len(initial_bytes)
+          return ratio > 0.30
+      except Exception:
+          return True
+  
+  # ==============================================================================
+  # AXIOM 3: PARSIMONY (Extractor & Complexity Scoring)
+  # Source: LCD_port/canonical_code_platform_port/core/canon_extractor.py
+  # Refinement: Now counts imports to help with Topological Sorting.
+  # ==============================================================================
+  class ParsimoniousExtractor(ast.NodeVisitor):
+      def __init__(self, source_code: str):
+          self.summary: List[str] = []
+          self.source = source_code
+          self.import_count = 0  # Used for topological sorting heuristic
+  
+      def _get_args(self, node):
+          """Extracts function arguments for context."""
+          if not hasattr(node, 'args'): return []
+          args = [arg.arg for arg in node.args.args]
+          if node.args.vararg: args.append(f"*{node.args.vararg.arg}")
+          if node.args.kwarg: args.append(f"**{node.args.kwarg.arg}")
+          return args
+  
+      def visit_Import(self, node):
+          self.import_count += len(node.names)
+          self.generic_visit(node)
+  
+      def visit_ImportFrom(self, node):
+          self.import_count += 1
+          self.generic_visit(node)
+  
+      def visit_FunctionDef(self, node):
+          args = self._get_args(node)
+          doc = ast.get_docstring(node)
+          desc = f"Function: {node.name}({', '.join(args)})"
+          if doc:
+              clean_doc = doc.split('\n')[0].strip()[:80]
+              desc += f" - '{clean_doc}...'"
+          self.summary.append(desc)
+          self.generic_visit(node)
+  
+      def visit_ClassDef(self, node):
+          doc = ast.get_docstring(node)
+          desc = f"Class: {node.name}"
+          if doc:
+              clean_doc = doc.split('\n')[0].strip()[:80]
+              desc += f" - '{clean_doc}...'"
+          self.summary.append(desc)
+          self.generic_visit(node)
+  
+  # ==============================================================================
+  # AXIOM 1: TRAVERSAL (High-Performance os.scandir)
+  # Source: LCD_port/ACP_V1/scanner/traversal.py
+  # Refinement: Uses os.scandir for 3-10x speedup over pathlib.
+  # ==============================================================================
+  def traverse_project_optimized(root_path: str):
+      """
+      Iterative stack-based traversal using os.scandir for performance.
+      """
+      if not os.path.exists(root_path): return
+  
+      stack = [root_path]
+      
+      while stack:
+          current_path = stack.pop()
+          
+          try:
+              # os.scandir is faster because it caches file attributes
+              with os.scandir(current_path) as entries:
+                  for entry in entries:
+                      # Note: startswith('.') handles .git, .env, .vscode, etc.
+                      if entry.name in IGNORE_DIRS or entry.name.startswith('.'):
+                          continue
+                      
+                      if entry.is_dir(follow_symlinks=False):
+                          stack.append(entry.path)
+                      
+                      elif entry.is_file(follow_symlinks=False):
+                          yield entry.path
+          except PermissionError:
+              continue
+          except Exception:
+              continue
+  
+  # ==============================================================================
+  # CORE PACKAGER
+  # ==============================================================================
+  class WorkspacePackager:
+      def __init__(self, root_path: str):
+          self.root_path = pathlib.Path(root_path).resolve()
+          self.files_registry = []
+          self.bundle_data = {
+              "meta": {
+                  "generated_at": datetime.datetime.utcnow().isoformat(),
+                  "project_root": self.root_path.name,
+                  "tool_version": "2.2 (Topological CLI)"
+              }
+          }
+  
+      def _generate_robust_yaml(self):
+          """
+          Generates valid YAML manually, using Block Scalars (|) for content safety.
+          Includes Compliance Report and Redaction logic.
+          """
+          lines = []
+          lines.append(f"# Workspace Context: {self.bundle_data['meta']['project_root']}")
+          lines.append(f"# Generated: {self.bundle_data['meta']['generated_at']}")
+          lines.append(f"# Files: {len(self.files_registry)}")
+          lines.append(f"# Compliance Report:")
+          lines.append(f"#  - Axiom 1 (Traversal): os.scandir iterative stack (Active)")
+          lines.append(f"#  - Axiom 2 (Sanitization): Binary & Entropy checks (Active)")
+          lines.append(f"#  - Axiom 3 (Parsimony): AST-based summarization (Active)")
+          lines.append(f"#  - Security: High-entropy secret redaction (Active)")
+          lines.append("")
+          
+          for file_info in self.files_registry:
+              lines.append(f"- path: {file_info['path']}")
+              lines.append(f"  size_bytes: {file_info['size']}")
+              lines.append(f"  complexity: {file_info['complexity']}")
+              
+              if file_info['summary']:
+                  lines.append("  summary:")
+                  for item in file_info['summary']:
+                      safe_item = item.replace('"', '\\"')
+                      lines.append(f"    - \"{safe_item}\"")
+              
+              lines.append("  content: |")
+              if file_info['content']:
+                  for line in file_info['content'].splitlines():
+                      # REDACTION: Check for high entropy secrets in assignments
+                      if ("key" in line.lower() or "token" in line.lower() or "secret" in line.lower()) and "=" in line:
+                          # Split by first equals to check value part
+                          parts = line.split('=', 1)
+                          if len(parts) == 2 and calculate_entropy(parts[1]) > 4.5:
+                              lines.append(f"    {parts[0]}= [REDACTED_SECRET]")
+                              continue
+                      lines.append(f"    {line}")
+              else:
+                  lines.append("    (empty file)")
+              lines.append("") 
+              
+          return "\n".join(lines)
+  
+      def run(self):
+          print(f"🚀  Scanning Root: {self.root_path}")
+          file_count = 0
+          
+          # 1. Traversal & Extraction
+          for file_path_str in traverse_project_optimized(str(self.root_path)):
+              try:
+                  # Binary Check
+                  if is_binary_file(file_path_str): continue
+                  
+                  p_obj = pathlib.Path(file_path_str)
+                  
+                  # Size Check
+                  if p_obj.stat().st_size > (MAX_FILE_SIZE_MB * 1024 * 1024): 
+                      continue
+  
+                  # Read Content
+                  try:
+                      with open(file_path_str, "r", encoding="utf-8", errors="ignore") as f:
+                          content = f.read()
+                  except Exception:
+                      continue
+  
+                  # Metadata Extraction
+                  summary = []
+                  complexity = 0 # Default for non-python
+                  
+                  if p_obj.suffix == '.py':
+                      try:
+                          extractor = ParsimoniousExtractor(content)
+                          extractor.visit(ast.parse(content))
+                          summary = extractor.summary
+                          complexity = extractor.import_count
+                      except SyntaxError:
+                          summary = ["(Syntax Error Detected)"]
+                          complexity = 999 # Push to bottom if error
+                      except Exception:
+                          pass
+  
+                  # Store for Sorting
+                  try:
+                      rel_path = p_obj.relative_to(self.root_path)
+                  except ValueError:
+                      rel_path = p_obj.name # Fallback if path issue
+  
+                  self.files_registry.append({
+                      "path": str(rel_path).replace("\\", "/"),
+                      "size": len(content),
+                      "summary": summary,
+                      "content": content,
+                      "complexity": complexity
+                  })
+                  
+                  file_count += 1
+                  if file_count % 50 == 0:
+                      sys.stdout.write(f"\r⏳  Processed {file_count} files...")
+                      sys.stdout.flush()
+  
+              except Exception as e:
+                  pass 
+  
+          # 2. Topological Sort (Heuristic)
+          # Sort files by complexity (fewer imports = lower dependency = should be read first)
+          # Secondary sort by path for deterministic output
+          self.files_registry.sort(key=lambda x: (x['complexity'], x['path']))
+  
+          print(f"\n✅  Complete. Total files packaged: {file_count}")
+          return self._generate_robust_yaml()
+  
+  if __name__ == "__main__":
+      parser = argparse.ArgumentParser(description="Aletheia Workspace Packager (Refined CLI)")
+      parser.add_argument("target_dir", nargs="?", default=".", help="Directory to package (default: current)")
+      parser.add_argument("-o", "--output", default="project_context.yaml", help="Output filename")
+      
+      args = parser.parse_args()
+      
+      packager = WorkspacePackager(args.target_dir)
+      yaml_content = packager.run()
+      
+      with open(args.output, "w", encoding="utf-8") as f:
+          f.write(yaml_content)
+      
+      print(f"📄  Manifest saved to: {os.path.abspath(args.output)}")

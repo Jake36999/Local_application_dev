@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pdf-ocr-app"
+version = "0.1.0"
+description = "A Python application for processing PDF files with OCR capabilities."
+authors = ["Your Name <youremail@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pymupdf = "^1.18.19"  # Adjust version as necessary
+# Add any additional dependencies here
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

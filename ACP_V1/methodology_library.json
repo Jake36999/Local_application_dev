@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "library_version": "1.0",
+    "source_reports": 17,
+    "generated_date": "2026-02-04",
+    "status": "AUTHORITATIVE_CONSTITUTION",
+    "description": "The unified architectural constitution for the ACP_V1 platform, synthesized from the ACP Swarm Round 1 reports."
+  },
+  "architectural_axioms": [
+    "Rule of One: There shall be only one security definition (tooling.common.security) and one database authority. Duplicate utility scripts (e.g., security_utils.py) are strictly forbidden.",
+    "Unified Configuration: Local .env or settings.py files are prohibited; all modules must import from ACP_V1.config.settings.",
+    "Single Source of Truth (Database): All SQL connections must strictly target ACP_V1/memory/sql/project_meta.db; local .db or .sqlite files are forbidden.",
+    "Ancestor Lineage: The Core inherits logic from legacy ports but must not carry forward their technical debt or wrapper code.",
+    "Root Perimeter Rule: No script may reference external directories via relative paths (e.g., ../workspace_creator); all imports must be absolute from the ACP_V1 root.",
+    "Zero-Dependency Footprint: Prioritize Python Standard Library (pathlib, ast, hashlib) to maintain air-gapped forensic viability.",
+    "The Fitz Mandate: All PDF processing must utilize 'fitz' (PyMuPDF); PyPDF2 is deprecated.",
+    "Shared Security: All modules must import 'tooling.common.security' for path validation and input sanitization.",
+    "Zombie Rule: Legacy directories must be archived immediately after asset harvesting to prevent IDE indexing confusion.",
+    "Structured Output Enforcement: All LLM interactions must utilize strict JSON schemas or grammar-constrained generation to prevent syntax errors."
+  ],
+  "directory_topology": {
+    "ACP_V1/core": "The Execution Engine: Contains orchestrators, internal buses (message_bus.py), and primary business logic (canon_extractor.py).",
+    "ACP_V1/tooling": "The Hands: Atomic tools (security.py, profiler.py), ingestion engines (ingest_manager.py), and bundlers.",
+    "ACP_V1/brain": "The Cognitive Layer: Read-only configurations, identity manifests, intent specifications, and Lenses.",
+    "ACP_V1/validation": "The Immune System: Quality assurance, rule engines, and the validator_engine.py (formerly core_engine.py).",
+    "ACP_V1/memory": "State Persistence: Contains sql/project_meta.db (Structural) and vector/chroma_db (Semantic).",
+    "ACP_V1/ui": "Frontend Assets: Unified React/TypeScript interface library (migrated from Workspace_packager).",
+    "ACP_V1/safe_ops": "Safety Layer: Isolation layers and sandboxing logic for dynamic tool execution.",
+    "ACP_V1/archive": "Cold Storage: Compressed and read-only storage for decommissioned legacy ports."
+  },
+  "technical_approaches": {
+    "scanning_and_analysis": {
+      "method": "Deep AST Parsing",
+      "tools": ["ast.parse", "ast.walk"],
+      "metrics": ["McCabe Cyclomatic Complexity", "Node Count", "Async/Decorator detection"],
+      "binary_detection": "Control Character Threshold > 30% (treat as binary)",
+      "guardrails": ["100MB serialization limit via len(json.dumps())", "Null-Byte Block Check"]
+    },
+    "text_processing": {
+      "strategy": "Sliding Window Chunking",
+      "window_size": 12000,
+      "overlap": 500,
+      "serialization": "JSON-LD Schema support for hierarchical indexing"
+    },
+    "database_consolidation": {
+      "method": "SQLite ATTACH & MERGE",
+      "command_pattern": "ATTACH 'legacy.db' AS legacy; INSERT OR IGNORE INTO main.table SELECT * FROM legacy.table;",
+      "conflict_resolution": "Keys: 'file_hash' and 'chunk_index'",
+      "drift_tracking": "Record drift_category, severity, old_value, new_value"
+    },
+    "hashing_standards": {
+      "provenance": "SHA-256 (Content Identity)",
+      "uid_generation": "MD5 (Relative Path Tracking)"
+    },
+    "security_validation": {
+      "path_resolution": "pathlib.resolve(strict=True) with follow_symlinks=False",
+      "dangerous_calls": ["eval", "exec", "compile", "__import__", "import_module"],
+      "cors_policy": "Strict ALLOWED_ORIGINS list"
+    }
+  },
+  "migration_patterns": [
+    {
+      "legacy_pattern": "workspace_creator/app/tools/*.py",
+      "target_pattern": "ACP_V1/tooling/common/*.py (security, profiler) OR ACP_V1/core/canon/ (scanner)",
+      "refactoring_action": "Change imports from 'app.tools' to 'tooling.common' or 'core.canon'. Refactor tool_registry.py to config/tool_manifest.json."
+    },
+    {
+      "legacy_pattern": "canonical_code_platform_port/core/*.py",
+      "target_pattern": "ACP_V1/core/*.py",
+      "refactoring_action": "Merge logic into unified Core; deprecate local message buses in favor of ACP_V1.core.bus."
+    },
+    {
+      "legacy_pattern": "control_hub_port/* AND directory_bundler_port/*",
+      "target_pattern": "ACP_V1/tooling/bundler/",
+      "refactoring_action": "Consolidate into Directory_bundler_v4.5.py; delete redundant Control Hub wrapper."
+    },
+    {
+      "legacy_pattern": "Ingest_pipeline_V4r/core/*.py",
+      "target_pattern": "ACP_V1/tooling/ingest/*.py",
+      "refactoring_action": "Relocate ingest_manager.py; remap embedding clients to use global LM_STUDIO_URL from ACP_V1.config."
+    },
+    {
+      "legacy_pattern": "IRER_Validation_suite_run_ID-9/*",
+      "target_pattern": "ACP_V1/validation/*",
+      "refactoring_action": "Rename core_engine.py to validator_engine.py; rebrand as the system Immune System."
+    },
+    {
+      "legacy_pattern": "Workspace_packager_LLM_construct/frontend/*",
+      "target_pattern": "ACP_V1/ui/*",
+      "refactoring_action": "Integrate IdentityCard.tsx and LensViewer.tsx into central UI library."
+    }
+  ],
+  "operational_workflows": [
+    {
+      "task": "System Boot (R2 Self-Bootstrapping)",
+      "steps": [
+        "Verify Python 3.10+ Environment",
+        "Load Configuration from ACP_V1.config.settings",
+        "Establish Connection to ACP_V1/memory/sql/project_meta.db",
+        "Initialize validator_engine.py (Immune System)",
+        "Verify LM Studio Connectivity via local port"
+      ]
+    },
+    {
+      "task": "Legacy Decommissioning (Surgical Extraction)",
+      "steps": [
+        "Execute consolidate_tools.ps1 script",
+        "Verify atomic tool integrity (SHA-256 hash check)",
+        "Refactor tool_registry.py to config/tool_manifest.json",
+        "Archive legacy residue to ACP_V1/archive/[legacy_name]_[timestamp].zip",
+        "Set Read-Only bit on archive",
+        "Purge original legacy directory"
+      ]
+    },
+    {
+      "task": "Code Ingestion & Scanning",
+      "steps": [
+        "Trigger canon_scanner.py (Deep AST Analysis)",
+        "Perform Null-Byte Block Check (Binary Detection)",
+        "Serialize content (100MB Guardrail)",
+        "Chunk text (12,000 char windows)",
+        "Vectorize and store in ACP_V1/memory/vector/"
+      ]
+    }
+  ],
+  "deprecated_assets": [
+    "workspace_creator (Shell/Wrapper)",
+    "app/main.py",
+    "backend_startup.py",
+    "ui_app.py (Legacy UI)",
+    "control_hub_port (Directory)",
+    "directory_bundler_port (Directory - post-harvest)",
+    "canonical_code_platform_port/ui/",
+    "canonical_code_platform_port/bus/message_bus.py (Redundant)",
+    "project_meta.db (Local/Legacy instances)",
+    "canon_db.py",
+    "settings_db.py",
+    "Install_Dependencies.bat",
+    "utils/ocr_service.py (Old PyPDF2 variants)",
+    "cli_scans/",
+    "logs/ (Local log folders superseded by aletheia_system.log)"
+  ]
+}

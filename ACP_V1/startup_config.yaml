@@ -1,0 +1,22 @@
+system_name: "ACP V1 - Unified"
+version: "4.0"
+
+paths:
+  root: "."
+  # New Context Paths
+  active_context: "safe_ops/context/active"
+  archive_context: "safe_ops/context/archive"
+  
+  # New Tool Paths (Point to the 'tooling' directory)
+  tools:
+    bundler: "tooling/bundler/Directory_bundler_v4.5.py"
+    ingestor: "tooling/ingest/orchestrator.py"
+    
+  # New Memory Paths
+  db_sql: "memory/sql/project_meta.db"
+  db_vector: "memory/vector"
+
+verification:
+  lm_studio_url: "http://localhost:1234/v1/chat/completions"
+  test_prompts:
+    - "Status Check: ACP V1 Online."

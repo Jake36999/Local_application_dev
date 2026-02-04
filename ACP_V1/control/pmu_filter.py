@@ -110,7 +110,7 @@ if __name__ == '__main__':
     # Assertions for one-cycle filter
     expected_len_one_cycle = len(sampled_values_noisy) - one_cycle_filter.window_size + 1
     assert len(filtered_values_one_cycle) == expected_len_one_cycle, \
-        f"Test 1 Failed: One-cycle filtered length mismatch (Expected: {expected_len_one_cycle}, Got: {len(filtered_values_one_cycle)})">
+        f"Test 1 Failed: One-cycle filtered length mismatch (Expected: {expected_len_one_cycle}, Got: {len(filtered_values_one_cycle)})"
 
     # TVE compliance check for one-cycle filter
     print("\n  Simulating TVE compliance for one-cycle filter:")
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     # Assertions for two-cycle filter
     expected_len_two_cycle = len(sampled_values_noisy) - two_cycle_filter.window_size + 1
     assert len(filtered_values_two_cycle) == expected_len_two_cycle, \
-        f"Test 2 Failed: Two-cycle filtered length mismatch (Expected: {expected_len_two_cycle}, Got: {len(filtered_values_two_cycle)})">
+        f"Test 2 Failed: Two-cycle filtered length mismatch (Expected: {expected_len_two_cycle}, Got: {len(filtered_values_two_cycle)})"
 
     # TVE compliance check for two-cycle filter
     print("\n  Simulating TVE compliance for two-cycle filter:")

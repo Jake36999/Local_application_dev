@@ -1,0 +1,4164 @@
+# Workspace Bundle: Gem_app_Gallery
+# Generated: 2026-02-03T16:19:24.237692
+# Compliance: os.scandir traversal; binary guard; PEM + entropy redaction; polyglot summaries
+
+# Project Structure:
+# Gem_app_Gallery/
+#   |-- angular-example/
+#     |-- angular.json
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- src/
+#       |-- app.component.html
+#     |-- tsconfig.json
+#   |-- code-execution/
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- tsconfig.json
+#   |-- function-calling/
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- tsconfig.json
+#   |-- openai-sdk-compatibility/
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- tsconfig.json
+#   |-- p5js-playground/
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- playground.tsx
+#     |-- README.md
+#     |-- tsconfig.json
+#   |-- react-example/
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- tsconfig.json
+#   |-- spinnerevolve/
+#     |-- App.tsx
+#     |-- components/
+#       |-- P5Canvas.tsx
+#       |-- StatsChart.tsx
+#       |-- Terminal.tsx
+#     |-- index.css
+#     |-- index.html
+#     |-- index.tsx
+#     |-- metadata.json
+#     |-- package.json
+#     |-- README.md
+#     |-- tsconfig.json
+
+--- FILE: angular-example/README.md ---
+Size: 537 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/angular_example
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: angular-example/angular.json ---
+Size: 1322 bytes
+Summary: Keys: $schema, version, newProjectRoot, projects
+Content: |
+  {
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "",
+    "projects": {
+      "app": {
+        "projectType": "application",
+        "root": "",
+        "sourceRoot": "./",
+        "prefix": "app",
+        "architect": {
+          "build": {
+            "builder": "@angular/build:application",
+            "options": {
+              "outputPath": {
+                "base": "./dist",
+                "browser": "."
+              },
+              "browser": "index.tsx",
+              "tsConfig": "tsconfig.json"
+            },
+            "configurations": {
+              "production": {
+                "outputHashing": "all"
+              },
+              "development": {
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve": {
+            "builder": "@angular/build:dev-server",
+            "options": {
+              "port": 3000
+            },
+            "configurations": {
+              "production": {
+                "buildTarget": "app:build:production"
+              },
+              "development": {
+                "buildTarget": "app:build:development"
+              }
+            },
+            "defaultConfiguration": "development"
+          }
+        }
+      }
+    }
+  }
+
+--- FILE: angular-example/index.css ---
+Size: 0 bytes
+Summary: (none)
+Content: |
+
+--- FILE: angular-example/index.html ---
+Size: 879 bytes
+Summary: (none)
+Content: |
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "rxjs": "https://esm.sh/rxjs@^7.8.2?conditions=es2015",
+      "rxjs/operators": "https://esm.sh/rxjs@^7.8.2/operators?conditions=es2015",
+      "@google/genai": "https://esm.sh/@google/genai@^1.13.0?external=rxjs",
+      "@angular/platform-browser": "https://esm.sh/@angular/platform-browser@^20.1.6-0?external=rxjs",
+      "@angular/core": "https://esm.sh/@angular/core@^20.1.6-0?external=rxjs",
+      "@angular/compiler": "https://esm.sh/@angular/compiler@^20.1.6-0?external=rxjs"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/index.css">
+  </head>
+  <body class="bg-slate-900">
+    <app-root></app-root>
+  </body>
+  </html>
+
+--- FILE: angular-example/index.tsx ---
+Size: 431 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import {provideZonelessChangeDetection} from '@angular/core';
+  import {bootstrapApplication} from '@angular/platform-browser';
+  
+  import {AppComponent} from './src/app.component';
+  
+  bootstrapApplication(AppComponent, {
+    providers: [provideZonelessChangeDetection()],
+  }).catch((err) => console.error(err));
+  
+  // AI Studio always uses an `index.tsx` file for all project types.
+
+--- FILE: angular-example/metadata.json ---
+Size: 84 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "Angular Example",
+    "description": "Example Angular app using Gemini"
+  }
+
+--- FILE: angular-example/package.json ---
+Size: 678 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "angular-example",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "ng serve",
+      "build": "ng build",
+      "preview": "ng serve --configuration=production"
+    },
+    "dependencies": {
+      "rxjs": "^7.8.2",
+      "@google/genai": "^1.13.0",
+      "@angular/platform-browser": "^20.1.0",
+      "@angular/core": "^20.1.0",
+      "@angular/compiler": "^20.1.0",
+      "@angular/build": "^20.1.0",
+      "@angular/cli": "^20.1.0",
+      "@angular/common": "^20.1.0",
+      "@angular/compiler-cli": "^20.1.0",
+      "tailwindcss": "latest"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: angular-example/src/app.component.html ---
+Size: 1007 bytes
+Summary: (none)
+Content: |
+  <div class="bg-gradient-to-br from-gray-50 to-gray-200 rounded-2xl shadow-2xl p-8 text-center w-full max-w-md border border-gray-300 transform transition-all duration-500 hover:scale-105">
+    <header class="mb-6">
+      <h1 class="text-4xl font-bold text-slate-800">
+        Gemini Greeting
+      </h1>
+    </header>
+  
+    <main class="min-h-[120px] flex items-center justify-center">
+      @if (isLoading()) {
+        <div class="flex flex-col items-center text-gray-600 space-y-3">
+          <!-- Spinner -->
+          <div class="w-8 h-8 border-4 border-indigo-200 border-t-indigo-500 rounded-full animate-spin"></div>
+          <span class="text-sm">Generating a warm welcome...</span>
+        </div>
+      } @else if (error()) {
+        <p class="font-bold">Oops! Something went wrong.</p>
+      } @else {
+        <blockquote class="relative">
+          <p class="text-2xl lg:text-3xl font-serif italic text-gray-700 leading-relaxed z-10 relative px-4">
+           {{ greeting() }}
+          </p>
+        </blockquote>
+      }
+    </main>
+  </div>
+
+--- FILE: angular-example/tsconfig.json ---
+Size: 595 bytes
+Summary: Keys: compilerOptions, files, angularCompilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      }
+    },
+    "files": [
+      "./index.tsx"
+    ],
+    "angularCompilerOptions": {
+      "disableTypeScriptVersionCheck": true
+    }
+  }
+
+--- FILE: code-execution/README.md ---
+Size: 568 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/genai_sdk_generate_content_with_code_execution
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: code-execution/index.css ---
+Size: 108 bytes
+Summary: (none)
+Content: |
+  pre {
+    border: 1px solid light-dark(#444, #aaa);
+    padding: 1em;
+    overflow: auto;
+    border-radius: 8px;
+  }
+
+--- FILE: code-execution/index.html ---
+Size: 328 bytes
+Summary: (none)
+Content: |
+  <!doctype html>
+  <html>
+  <head><link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^0.8.0",
+        "marked": "https://esm.sh/marked@^15.0.8"
+      }
+    }
+  </script>
+  
+  <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: code-execution/index.tsx ---
+Size: 1145 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * Copyright 2025 Google LLC
+   * SPDX-License-Identifier: Apache-2.0
+   */
+  
+  import {GoogleGenAI} from '@google/genai';
+  import {marked} from 'marked';
+  
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  
+  async function debug(...args: string[]) {
+    const turn = document.createElement('div');
+    const promises = args.map(async (arg) => await marked.parse(arg ?? ''));
+    const strings = await Promise.all(promises);
+    turn.innerHTML = strings.join('');
+    document.body.append(turn);
+  }
+  
+  async function generateContentFrom() {
+    const ai = [REDACTED_HIGH_ENTROPY]
+  
+    debug('Generating...');
+  
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.0-flash',
+      contents:
+        'What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.',
+      config: {
+        tools: [{codeExecution: {}}],
+      },
+    });
+  
+    await debug('```' + response.executableCode + '```');
+    await debug(response.codeExecutionResult);
+  }
+  
+  async function main() {
+    await generateContentFrom().catch(async (e) => await debug('got error', e));
+  }
+  
+  main();
+
+--- FILE: code-execution/metadata.json ---
+Size: 94 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "Code execution",
+    "description": "Let Gemini execute Python code in a sandbox"
+  }
+
+--- FILE: code-execution/package.json ---
+Size: 381 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "code-execution",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@google/genai": "^0.8.0",
+      "marked": "^15.0.8"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: code-execution/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
+
+--- FILE: function-calling/README.md ---
+Size: 570 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/genai_sdk_generate_content_with_function_calling
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: function-calling/index.css ---
+Size: 0 bytes
+Summary: (none)
+Content: |
+
+--- FILE: function-calling/index.html ---
+Size: 279 bytes
+Summary: (none)
+Content: |
+  <!doctype html>
+  <html>
+  <head><link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^0.8.0"
+      }
+    }
+  </script>
+  
+  <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: function-calling/index.tsx ---
+Size: 1834 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * Copyright 2025 Google LLC
+   * SPDX-License-Identifier: Apache-2.0
+   */
+  
+  import {
+    FunctionCallingConfigMode,
+    FunctionDeclaration,
+    GoogleGenAI,
+    Type,
+  } from '@google/genai';
+  
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  
+  function debug(...args: string[]) {
+    const turn = document.createElement('pre');
+    turn.textContent = args.join('');
+    document.body.append(turn);
+  }
+  
+  async function generateContent() {
+    const ai = [REDACTED_HIGH_ENTROPY]
+  
+    const controlLightFunctionDeclaration: FunctionDeclaration = {
+      name: 'controlLight',
+      parameters: {
+        type: Type.OBJECT,
+        description: 'Set the brightness and color temperature of a room light.',
+        properties: {
+          brightness: {
+            type: Type.NUMBER,
+            description:
+              'Light level from 0 to 100. Zero is off and 100 is full brightness.',
+          },
+          colorTemperature: {
+            type: Type.STRING,
+            description:
+              'Color temperature of the light fixture which can be `daylight`, `cool` or `warm`.',
+          },
+        },
+        required: ['brightness', 'colorTemperature'],
+      },
+    };
+  
+    debug('Dim the lights so the room feels cozy and warm');
+  
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.0-flash',
+      contents: 'Dim the lights so the room feels cozy and warm.',
+      config: {
+        tools: [{functionDeclarations: [controlLightFunctionDeclaration]}],
+        toolConfig: {
+          functionCallingConfig: {
+            mode: FunctionCallingConfigMode.ANY,
+            allowedFunctionNames: ['controlLight'],
+          },
+        },
+      },
+    });
+  
+    debug('Response');
+    debug(JSON.stringify(response.functionCalls, null, 2));
+  }
+  
+  async function main() {
+    await generateContent().catch((e) => debug('got error', e));
+  }
+  
+  main();
+
+--- FILE: function-calling/metadata.json ---
+Size: 113 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "Function calling",
+    "description": "Provide Gemini with functions it can use to create responses"
+  }
+
+--- FILE: function-calling/package.json ---
+Size: 358 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "function-calling",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@google/genai": "^0.8.0"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: function-calling/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
+
+--- FILE: openai-sdk-compatibility/README.md ---
+Size: 552 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/openai_sdk_compatibility_layer
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: openai-sdk-compatibility/index.css ---
+Size: 0 bytes
+Summary: (none)
+Content: |
+
+--- FILE: openai-sdk-compatibility/index.html ---
+Size: 315 bytes
+Summary: (none)
+Content: |
+  <!doctype html>
+  <html>
+  <head><link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "marked": "https://esm.sh/marked@^15.0.8",
+        "openai": "https://esm.sh/openai@^4.94.0"
+      }
+    }
+  </script>
+  
+  <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: openai-sdk-compatibility/index.tsx ---
+Size: 915 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  import {marked} from 'marked';
+  import OpenAI from 'openai';
+  
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  
+  async function debug(...args: string[]) {
+    const turn = document.createElement('div');
+    const promises = args.map(async (arg) => await marked.parse(arg ?? ''));
+    const strings = await Promise.all(promises);
+    turn.innerHTML = strings.join('');
+    document.body.append(turn);
+  }
+  
+  const openai = new OpenAI({
+    apiKey: GEMINI_API_KEY,
+    baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+    dangerouslyAllowBrowser: true,
+  });
+  
+  const response = await openai.chat.completions.create({
+    model: 'models/gemini-2.5-flash',
+    messages: [
+      {role: 'system', content: 'You are a helpful assistant.'},
+      {
+        role: 'user',
+        content: 'Explain to me how AI works',
+      },
+    ],
+  });
+  
+  debug(response.choices[0].message.content);
+
+--- FILE: openai-sdk-compatibility/metadata.json ---
+Size: 101 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "OpenAI SDK compatibility",
+    "description": "Access Gemini models with the OpenAI SDK"
+  }
+
+--- FILE: openai-sdk-compatibility/package.json ---
+Size: 385 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "openai-sdk-compatibility",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "marked": "^15.0.8",
+      "openai": "^4.94.0"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: openai-sdk-compatibility/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
+
+--- FILE: p5js-playground/README.md ---
+Size: 537 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/p5js_playground
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: p5js-playground/index.css ---
+Size: 13787 bytes
+Summary: (none)
+Content: |
+  @import url('https://fonts.googleapis.com/css2?family= [REDACTED_HIGH_ENTROPY]
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    height: 100%;
+    display: flex;
+    font-family: 'Google Sans Text', 'Google Sans';
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    overflow: hidden;
+  
+    --color-bg: light-dark(#fff, #000);
+    --color-text: light-dark(#000, #fff);
+  
+    --color-inv-bg: light-dark(#000, #fff);
+    --color-inv-text: light-dark(#fff, #000);
+    --color-inv-bg2: light-dark(#333, #aaa);
+    --color-inv-text2: light-dark(#ccc, #222);
+  
+    --color-accent: light-dark(#000, #fff);
+    --color-accent2: light-dark(#444, #ccc);
+    --color-accent-disabled: light-dark(#aaa, #aaa);
+    --color-accent-text: light-dark(#fff, #000);
+    --color-sidebar-border: light-dark(#ddd, #333);
+  
+    --color-bg2: light-dark(#f0f0f0, #333);
+    --color-text2: light-dark(#333, #f0f0f0);
+    --color-bg3: light-dark(#dadada, #4b4b4b);
+    --color-text3: light-dark(#333, #f0f0f0);
+  
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: light-dark(rgba(170, 170, 170, 0.7), rgba(130, 130, 130, 0.7));
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  
+    --code-bg: #222;
+    --code-text: #ccc;
+  
+    --code-editor-bg: var(--color-bg2);
+    --code-editor-text: var(--color-text2);
+  
+    --color-error-bg: #ff3326;
+    --color-error-text: #000;
+  }
+  
+  .playground {
+    border-top: 1px solid var(--color-sidebar-border);
+  }
+  
+  
+  textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+  
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  
+    resize: none;
+  }
+  
+  .hidden {
+    display: none!important;
+  }
+  
+  #editor textarea {
+    font: monospace;
+  }
+  
+  #root,
+  .playground {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .playground {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid green; */
+    flex: 1;
+    /* column-gap: 2px; */
+  }
+  
+  .sidebar {
+    /* border: 1px solid orange; */
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 500px;
+    overflow: hidden;
+    border-right: 1px solid var(--color-sidebar-border, #ddd);
+  }
+  
+  .selector {
+    display: flex;
+    flex-direction: row;
+    flex: 0;
+    padding: 0 1em;
+    border-bottom: 1px solid var(--color-sidebar-border, #ddd);
+  }
+  
+  .selector button {
+    display: flex;
+    gap: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    border-bottom: 4px solid transparent;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    color: var(--color-text);
+  }
+  
+  .selector button:hover {
+    /* background: transparent; */
+    background-color: var(--color-bg2);
+    color: var(--color-text2);
+  }
+  
+  .selected-tab, .selector button.active {
+    background: transparent;
+    /* background-color: #ccc; */
+    border-bottom: 4px solid var(--color-accent, #000) !important;
+  }
+  
+  .tabcontent {
+    display: none;
+  }
+  
+  .showtab {
+    display: flex!important;
+  }
+  
+  .toolbar {
+    height: 80px;
+    /* border: 1px solid #f0f; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 1px solid var(--color-sidebar-border, #ddd);
+  }
+  
+  .toolbar button {
+    /* float: left; */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 5px 6px 5px;
+    transition: 0.3s;
+    background: transparent;
+    color: var(--color-accent);
+  }
+  
+  .toolbar button:hover {
+    background-color: transparent;
+    color: var(--color-accent2);
+  }
+  
+  .toolbar button.disabled {
+    color: var(--color-accent-disabled);
+  }
+  
+  #reloadCode {
+    margin-right: 25px;
+  }
+  
+  #clear {
+    margin-left: 25px;
+  }
+  
+  
+  #chat {
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  textarea {
+    flex: 1;
+    min-height: 30px;
+    height: 100px;
+    width: 100%;
+  }
+  
+  .main-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+  
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    padding: 8px;
+    scroll-behavior: smooth;
+    padding-top: 1.5em;
+  
+    * {
+    overflow-anchor: none;
+    }
+  }
+  
+  #chatStatus {
+    background: var(--color-bg2, #f0f0f0);
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-weight: bold;
+  }
+  
+  #chatStatus svg {
+    margin-right: 10px;
+  }
+  
+  @-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+    to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+  }
+  @keyframes rotating {
+    from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+    to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+  }
+  .rotating {
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+  }
+  
+  
+  #inputArea {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--color-sidebar-border);
+    height: 80px;
+  }
+  
+  #messageInput {
+    flex-grow: 1;
+    padding: 10px 10px 10px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 1em;
+    background: var(--color-bg2);
+    color: var(--color-text2);
+  }
+  
+  #messageInput:focus{
+    outline: 1px solid var(--color-accent, inherit);
+  }
+  
+  #sendButton {
+    padding: 8px 6px 8px 10px;
+    height: 50px;
+    background-color: var(--color-accent, inherit);
+    color: var(--color-accent-text, inherit);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+    display: flex;
+    aspect-ratio: 1;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-text);
+  }
+  
+  #sendButton:hover {
+    background-color: var(--color-accent2, #ddd);
+  }
+  
+  #sendButton.disabled {
+    background-color: var(--color-accent-disabled, #ccc);
+    cursor: not-allowed;
+  }
+  
+  
+  #anchor {
+    overflow-anchor: auto;
+    padding-top: 45px;
+  }
+  
+  
+  #editor {
+    position: relative;
+    overflow: auto;
+    background-color: #1c1b1b;
+    /* border: 1px solid red; */
+    /* display: flex; */
+  
+    /* border: 1px solid var(--color-sidebar-border, #ddd); */
+    flex-direction: column;
+    flex: 1;
+  
+    header {
+      flex: 0;
+    }
+  
+    .code-container {
+      width: max-content;
+      position: relative;
+    }
+  
+    .code-syntax,
+    .code-editor {
+      flex: 1 1 100%;
+      white-space: pre;
+  
+      font-family: monospace;
+      font-feature-settings: normal;
+      font-kerning: auto;
+      font-optical-sizing: auto;
+      font-palette: normal;
+      font-size: 14px;
+      font-size-adjust: none;
+      font-stretch: 100%;
+      font-style: normal;
+      font-synthesis-small-caps: auto;
+      font-synthesis-style: auto;
+      font-synthesis-weight: auto;
+      font-variant-alternates: normal;
+      font-variant-caps: normal;
+      font-variant-east-asian: normal;
+      font-variant-emoji: normal;
+      font-variant-ligatures: normal;
+      font-variant-numeric: normal;
+      font-variant-position: normal;
+      font-variation-settings: normal;
+      font-weight: 400;
+      -webkit-font-smoothing: auto;
+    }
+    .code-syntax {
+      pointer-events: none;
+    }
+    .code-editor {
+      background: transparent;
+      color: transparent;
+      caret-color: var(--code-text);
+  
+      display: flex;
+  
+      position: absolute;
+      top: 0;
+      left: 0;
+  ;
+      flex: 1;
+      overflow: hidden;
+      width: -webkit-fill-available;
+      height: -webkit-fill-available;
+    }
+  }
+  
+  
+  .turn {
+  
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 85%;
+    word-wrap: break-word;
+  
+    .thinking {
+      font-style: normal;
+      background: var(--color-bg3);
+      color: var(--color-text3);
+      border-radius: 10px;
+      padding: 0.75em;
+      margin-top: 6px;
+  
+      p {
+        margin: 0.75rem 0;
+      }
+    }
+  }
+  
+  
+  .role-user {
+      background-color: var(--color-accent);
+      color: var(--color-accent-text);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+  
+      details {
+        display: none;
+      }
+  }
+  
+  .role-assistant {
+      background-color: var(--color-bg2);
+      color: var(--color-text2);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+  }
+  
+  .role-system-ask {
+    background-color: transparent;
+    color: var(--color-text2);
+    border: 1px solid var(--color-text2, #333);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  
+    details {
+      display: none;
+    }
+  }
+  
+  .role-error {
+    background-color: var(--color-error-bg);
+    color: var(--color-error-text);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  
+    details {
+      display: none;
+    }
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    /* aspect-ratio: 1 / 1; */
+    object-fit: contain;
+  }
+  
+  
+  /* Markdown */
+  
+  .turn > p {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+  }
+  .turn > p:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+  
+  .turn {
+    line-height: 1.5;
+  
+    li {
+      margin-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    li:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  
+    pre,
+    code {
+      background-color: var(--code-bg);
+      box-sizing: content-box;
+      color: var(--code-text);;
+      border-radius: 4px;
+      padding: 0 5px;
+      outline: 3px solid var(--code-bg);
+      outline-offset: -1px;
+      font-family: "Inconsolata", "Courier New", monospace;
+    }
+  
+    pre {
+      overflow: auto;
+      border-radius: 10px;
+      padding: 15px;
+    }
+  
+  }
+  
+  #editor textarea {
+    background-color: var(--code-editor-bg);
+    color: var(--code-editor-text);
+    padding: 14px;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+  }
+  
+  .preview-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    flex: 1;
+  }
+  
+  .button-label {
+    position: relative;
+  }
+  
+  .button-tooltip {
+    position: relative;
+    top: -85px;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    cursor: default;
+    overflow: visible;
+    transition: 0.2s;
+    opacity: 0;
+  
+    p {
+      background: var(--color-inv-bg);
+      color: var(--color-inv-text);
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 16px;
+      width: max-content;
+      transform: translate(calc(-50% + 20px), 0);
+      outline: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+  
+  .show-tooltip {
+    opacity: 1.0;
+  }
+  
+  .turn button {
+    background: var(--color-accent);
+    color: var(--color-accent-text);
+    box-shadow: none;
+    border: none;
+    border-radius: 16px;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  
+  .turn button:hover {
+    background-color: var(--color-accent2);
+  }
+  
+  .turn button.disabled {
+    color: var(--color-accent-disabled);
+  }
+  
+  #appMessages {
+    display: flex;
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+  }
+  
+  
+  @media only screen and (max-width : 900px) {
+    .selector {
+      display: none;
+    }
+  
+    #editor {
+      display: none!important;
+    }
+    #chat {
+      display: flex!important;
+    }
+  
+    .playground {
+      flex-direction: column-reverse;
+    }
+  
+    .toolbar {
+      border-bottom: 1px solid var(--color-sidebar-border, #ddd);
+    }
+  
+  }
+  
+  
+  /**
+   * Code Syntax Highlighting
+   *****************************************************************************/
+  
+   pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em
+  }
+  code.hljs {
+    padding: 3px 5px
+  }
+  /*!
+    Theme: StackOverflow Dark
+    Description: Dark theme as used on stackoverflow.com
+    Author: stackoverflow.com
+    Maintainer: @Hirse
+    Website: https://github.com/StackExchange/Stacks
+    License: MIT
+    Updated: 2021-05-15
+  
+    Updated for @stackoverflow/stacks v0.64.0
+    Code Blocks: /blob/v0.64.0/lib/css/components/_stacks-code-blocks.less
+    Colors: /blob/v0.64.0/lib/css/exports/_stacks-constants-colors.less
+  */
+  .hljs {
+    /* var(--highlight-color) */
+    color: #fff;
+    /* var(--highlight-bg) */
+    background: #1c1b1b
+  }
+  .hljs-subst {
+    /* var(--highlight-color) */
+    color: #fff
+  }
+  .hljs-comment {
+    /* var(--highlight-comment) */
+    color: #999
+  }
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-meta .hljs-keyword,
+  .hljs-doctag,
+  .hljs-section {
+    /* var(--highlight-keyword) */
+    color: #88aece
+  }
+  .hljs-attr {
+    /* var(--highlight-attribute); */
+    color: #88aece
+  }
+  .hljs-attribute {
+    /* var(--highlight-symbol) */
+    color: #c59bc1
+  }
+  .hljs-name,
+  .hljs-type,
+  .hljs-number,
+  .hljs-selector-id,
+  .hljs-quote,
+  .hljs-template-tag {
+    /* var(--highlight-namespace) */
+    color: #f08d49
+  }
+  .hljs-selector-class {
+    /* var(--highlight-keyword) */
+    color: #88aece
+  }
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-symbol,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-link,
+  .hljs-selector-attr {
+    /* var(--highlight-variable) */
+    color: #b5bd68
+  }
+  .hljs-meta,
+  .hljs-selector-pseudo {
+    /* var(--highlight-keyword) */
+    color: #88aece
+  }
+  .hljs-built_in,
+  .hljs-title,
+  .hljs-literal {
+    /* var(--highlight-literal) */
+    color: #f08d49
+  }
+  .hljs-bullet,
+  .hljs-code {
+    /* var(--highlight-punctuation) */
+    color: #ccc
+  }
+  .hljs-meta .hljs-string {
+    /* var(--highlight-variable) */
+    color: #b5bd68
+  }
+  .hljs-deletion {
+    /* var(--highlight-deletion) */
+    color: #de7176
+  }
+  .hljs-addition {
+    /* var(--highlight-addition) */
+    color: #76c490
+  }
+  .hljs-emphasis {
+    font-style: italic
+  }
+  .hljs-strong {
+    font-weight: bold
+  }
+  .hljs-formula,
+  .hljs-operator,
+  .hljs-params,
+  .hljs-property,
+  .hljs-punctuation,
+  .hljs-tag {
+    /* purposely ignored */
+  
+  }
+
+--- FILE: p5js-playground/index.html ---
+Size: 882 bytes
+Summary: (none)
+Content: |
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>P5js Playground</title>
+      <meta charset="utf-8" />
+      <script type="importmap">
+        {
+          "imports": {
+            "@google/genai": "https://esm.sh/@google/genai",
+            "@google/genai/": "https://esm.sh/@google/genai/",
+            "lit": "https://esm.sh/lit",
+            "lit/": "https://esm.sh/lit/",
+            "marked": "https://esm.sh/marked",
+            "marked/": "https://esm.sh/marked/",
+            "highlight.js": "https://esm.sh/highlight.js@^11.11.1",
+            "marked-highlight": "https://esm.sh/marked-highlight@^2.2.1"
+          }
+        }
+        </script>
+        <link rel="stylesheet"
+        href= [REDACTED_HIGH_ENTROPY]
+    <link rel="stylesheet" href="/index.css">
+  </head>
+    <body>
+      <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: p5js-playground/index.tsx ---
+Size: 6586 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  import {GoogleGenAI} from '@google/genai';
+  import {ChatState, marked, Playground} from './playground';
+  
+  const SYSTEM_INSTRUCTIONS = `you're an extremely proficient creative coding agent, and can code effects, games, generative art.
+  write javascript code assuming it's in a live p5js environment.
+  return the code block.
+  you can include a short paragraph explaining your reasoning and the result in human readable form.
+  there can be no external dependencies: all functions must be in the returned code.
+  make extra sure that all functions are either declared in the code or part of p5js.
+  the user can modify the code, go along with the user's changes.`;
+  
+  const EMPTY_CODE = `function setup() {
+    // Setup code goes here.
+    createCanvas(windowWidth, windowHeight);
+  }
+  
+  function draw() {
+    // Frame drawing code goes here.
+    background(175);
+  }`;
+  
+  /* make a simple animation of the background color */
+  const STARTUP_CODE = `function setup() {
+    createCanvas(windowWidth, windowHeight);
+    // Set color mode to HSB (Hue, Saturation, Brightness)
+    // Hue ranges from 0 to 360, Saturation and Brightness from 0 to 100
+    colorMode(HSB, 360, 100, 100);
+  }
+  
+  function draw() {
+    // Calculate a hue value that changes over time
+    // Use frameCount, which increments each frame
+    // Multiply by a small number to slow down the color change
+    // Use the modulo operator (%) to wrap the hue value around 360
+    let hue = (frameCount * 0.5) % 360;
+  
+    // Set the background color using the calculated hue
+    // Keep saturation and brightness high for vivid colors
+    background(hue, 90, 90);
+  }
+  
+  // Optional: Resize the canvas if the browser window size changes
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }`;
+  
+  const EXAMPLE_PROMPTS = [
+    'make an arcade game',
+    'make a bouncing yellow ball within a square, make sure to handle collision detection properly. make the square slowly rotate. make sure ball stays within the square',
+    'make a smoke simulation made of puffy trails of smoke over a green landscape',
+    'create a game where a space ship shoots asteroids flying around me in space',
+  ];
+  
+  const ai = new GoogleGenAI({
+    apiKey= [REDACTED_HIGH_ENTROPY]
+    apiVersion: 'v1alpha',
+  });
+  
+  function createAiChat() {
+    return ai.chats.create({
+      model: 'gemini-2.5-pro',
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTIONS,
+        thinkingConfig: {
+          includeThoughts: true,
+        },
+      },
+    });
+  }
+  
+  let aiChat = createAiChat();
+  
+  function getCode(text: string) {
+    const startMark = '```javascript';
+    const codeStart = text.indexOf(startMark);
+    let codeEnd = text.lastIndexOf('```');
+  
+    if (codeStart > -1) {
+      if (codeEnd < 0) {
+        codeEnd = undefined;
+      }
+      return text.substring(codeStart + startMark.length, codeEnd);
+    }
+    return '';
+  }
+  
+  document.addEventListener('DOMContentLoaded', async (event) => {
+    const rootElement = document.querySelector('#root')! as HTMLElement;
+  
+    const playground = new Playground();
+    rootElement.appendChild(playground);
+  
+    playground.sendMessageHandler = async (
+      input: string,
+      role: string,
+      code: string,
+      codeHasChanged: boolean,
+    ) => {
+      console.log(
+        'sendMessageHandler',
+        input,
+        role,
+        code,
+        'codeHasChanged:',
+        codeHasChanged,
+      );
+  
+      const {thinking, text} = playground.addMessage('assistant', '');
+      const message = [];
+  
+      if (role.toUpperCase() === 'USER' && codeHasChanged) {
+        message.push({
+          role: 'user',
+          text: 'I have updated the code: ```javascript\n' + code + '\n```',
+        });
+      }
+  
+      if (role.toUpperCase() === 'SYSTEM') {
+        message.push({
+          role: 'user',
+          text: `Interpreter reported: ${input}. Is it possible to improve that?`,
+        });
+      } else {
+        message.push({
+          role,
+          text: input,
+        });
+      }
+  
+      playground.setChatState(ChatState.GENERATING);
+  
+      text.innerHTML = '...';
+  
+      let newCode = '';
+      let thought = '';
+  
+      try {
+        const res = await aiChat.sendMessageStream({message});
+  
+        for await (const chunk of res) {
+          for (const candidate of chunk.candidates ?? []) {
+            for (const part of candidate.content.parts ?? []) {
+              if (part.thought) {
+                playground.setChatState(ChatState.THINKING);
+                thought += part.text;
+                thinking.innerHTML = await marked.parse(thought);
+                thinking.parentElement.classList.remove('hidden');
+              } else if (part.text) {
+                playground.setChatState(ChatState.CODING);
+                newCode += part.text;
+                const p5Code = getCode(newCode);
+  
+                // Remove the code block, it is available in the Code tab
+                const explanation = newCode.replace(
+                  '```javascript' + p5Code + '```',
+                  '',
+                );
+  
+                text.innerHTML = await marked.parse(explanation);
+              }
+              playground.scrollToTheEnd();
+            }
+          }
+        }
+      } catch (e: GoogleGenAI.ClientError) {
+        console.error('GenAI SDK Error:', e.message);
+        let message = e.message;
+        const splitPos = e.message.indexOf('{');
+        if (splitPos > -1) {
+          const msgJson = e.message.substring(splitPos);
+          try {
+            const sdkError = JSON.parse(msgJson);
+            if (sdkError.error) {
+              message = sdkError.error.message;
+              message = await marked.parse(message);
+            }
+          } catch (e) {
+            console.error('Unable to parse the error message:', e);
+          }
+        }
+        const {text} = playground.addMessage('error', '');
+        text.innerHTML = message;
+      }
+  
+      // close thinking block
+      thinking.parentElement.removeAttribute('open');
+  
+      // If the answer was just code
+      if (text.innerHTML.trim().length === 0) {
+        text.innerHTML = 'Done';
+      }
+  
+      const p5Code = getCode(newCode);
+      if (p5Code.trim().length > 0) {
+        playground.setCode(p5Code);
+      } else {
+        playground.addMessage('SYSTEM', 'There is no new code update.');
+      }
+      playground.setChatState(ChatState.IDLE);
+    };
+  
+    playground.resetHandler = async () => {
+      aiChat = createAiChat();
+    };
+  
+    playground.setDefaultCode(EMPTY_CODE);
+    playground.addMessage(
+      'USER',
+      'make a simple animation of the background color',
+    );
+    playground.addMessage('ASSISTANT', 'Here you go!');
+    playground.setCode(STARTUP_CODE);
+    playground.setInputField(
+      'Start from scratch and ' +
+        EXAMPLE_PROMPTS[Math.floor(Math.random() * EXAMPLE_PROMPTS.length)],
+    );
+  });
+
+--- FILE: p5js-playground/metadata.json ---
+Size: 143 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "p5js playground",
+    "description": "Generate, edit, and preview interactive p5.js art and games simply by chatting with Gemini."
+  }
+
+--- FILE: p5js-playground/package.json ---
+Size: 468 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "p5js-playground",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@google/genai": "latest",
+      "lit": "latest",
+      "marked": "latest",
+      "highlight.js": "^11.11.1",
+      "marked-highlight": "^2.2.1"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: p5js-playground/playground.tsx ---
+Size: 16640 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  /* tslint:disable */
+  import {html, LitElement} from 'lit';
+  import {customElement, query, state} from 'lit/decorators.js';
+  // tslint:disable-next-line:ban-malformed-import-paths
+  import hljs from 'highlight.js';
+  import {classMap} from 'lit/directives/class-map.js';
+  import {Marked} from 'marked';
+  import {markedHighlight} from 'marked-highlight';
+  
+  /** Markdown formatting function with syntax hilighting */
+  export const marked = new Marked(
+    markedHighlight({
+      async: true,
+      emptyLangClass: 'hljs',
+      langPrefix: 'hljs language-',
+      highlight(code, lang, info) {
+        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        return hljs.highlight(code, {language}).value;
+      },
+    }),
+  );
+  
+  const ICON_BUSY = html`<svg
+    class="rotating"
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 -960 960 960"
+    width="24px"
+    fill="currentColor">
+    <path
+      d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q17 0 28.5 11.5T520-840q0 17-11.5 28.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-17 11.5-28.5T840-520q17 0 28.5 11.5T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z" />
+  </svg>`;
+  const ICON_EDIT = html`<svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="16px"
+    viewBox="0 -960 960 960"
+    width="16px"
+    fill="currentColor">
+    <path
+      d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z" />
+  </svg>`;
+  
+  const p5jsCdnUrl =
+    'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js';
+  
+  /**
+   * Chat state enum to manage the current state of the chat interface.
+   */
+  export enum ChatState {
+    IDLE,
+    GENERATING,
+    THINKING,
+    CODING,
+  }
+  
+  /**
+   * Chat tab enum to manage the current selected tab in the chat interface.
+   */
+  enum ChatTab {
+    GEMINI,
+    CODE,
+  }
+  
+  /**
+   * Chat role enum to manage the current role of the message.
+   */
+  export enum ChatRole {
+    USER,
+    ASSISTANT,
+    SYSTEM,
+  }
+  
+  /**
+   * Playground component for p5js.
+   */
+  @customElement('gdm-playground')
+  export class Playground extends LitElement {
+    @query('#anchor') anchor;
+    @query('#reloadTooltip') reloadTooltip;
+    private readonly codeSyntax = document.createElement('div');
+  
+    @state() chatState = ChatState.IDLE;
+    @state() isRunning = true;
+    @state() selectedChatTab = ChatTab.GEMINI;
+    @state() inputMessage = '';
+    @state() code = '';
+    @state() messages: HTMLElement[] = [];
+    @state() codeHasChanged = true;
+    @state() codeNeedsReload = false;
+  
+    private defaultCode = '';
+    private readonly previewFrame: HTMLIFrameElement =
+      document.createElement('iframe');
+    private lastError = '';
+    private reportedError = false;
+  
+    sendMessageHandler?: CallableFunction;
+    resetHandler?: CallableFunction;
+  
+    constructor() {
+      super();
+      this.previewFrame.classList.add('preview-iframe');
+      this.previewFrame.setAttribute('allowTransparency', 'true');
+  
+      this.codeSyntax.classList.add('code-syntax');
+  
+      /* Receive message from the iframe in case any error occures. */
+      window.addEventListener(
+        'message',
+        (msg) => {
+          if (msg.data && typeof msg.data === 'string') {
+            try {
+              const message = JSON.parse(msg.data).message;
+              this.runtimeErrorHandler(message);
+            } catch (e) {
+              console.error(e);
+            }
+          }
+        },
+        false,
+      );
+    }
+  
+    /** Disable shadow DOM */
+    createRenderRoot() {
+      return this;
+    }
+  
+    setDefaultCode(code: string) {
+      this.defaultCode = code;
+    }
+  
+    async setCode(code: string) {
+      this.code = code;
+      this.runCode(code);
+  
+      this.codeSyntax.innerHTML = await marked.parse(
+        '```javascript\n' + code + '\n```',
+      );
+    }
+  
+    setChatState(state: ChatState) {
+      this.chatState = state;
+    }
+  
+    runCode(code: string) {
+      this.reportedError = false;
+      this.lastError = '';
+  
+      const htmlContent = `
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <title>p5.js Sketch</title>
+                      <style>
+                          body { margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; }
+                          main { display: flex; justify-content: center; align-items: center; }
+                          .console { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.7); padding: 1em; margin: 0; color: red; font-family: monospace;}
+                      </style>
+                      <script src="${p5jsCdnUrl}"></script>
+                      <script>
+                        window.addEventListener('message', (event) => {
+                            if (event.data === 'stop' && typeof noLoop === 'function') { noLoop(); console.log('Sketch stopped (noLoop)'); }
+                            else if (event.data === 'resume' && typeof loop === 'function') { loop(); console.log('Sketch resumed (loop)'); }
+                        }, false);
+                      </script>
+                  </head>
+                  <body>
+                      <script>
+                          // Basic error handling within the iframe
+                          try {
+                              ${code}
+                          } catch (error) {
+                              console.error("Error in sketch:", error);
+                              parent.postMessage(
+                                JSON.stringify({
+                                  message: error.toString()
+                                })
+                              );
+                              document.body.innerHTML = '<pre class="console">Error: ' + error.message + '\\nCheck the browser console for details or ask Gemini to fix it.</pre>';
+                          }
+                      </script>
+                  </body>
+                  </html>
+              `;
+  
+      this.previewFrame.setAttribute('srcdoc', htmlContent);
+      this.codeNeedsReload = false;
+    }
+  
+    runtimeErrorHandler(errorMessage: string) {
+      this.reportedError = true;
+  
+      if (this.lastError !== errorMessage) {
+        this.addMessage('system-ask', errorMessage);
+      }
+      this.lastError = errorMessage;
+    }
+  
+    setInputField(message: string) {
+      this.inputMessage = message.trim();
+    }
+  
+    addMessage(role: string, message: string) {
+      const div = document.createElement('div');
+      div.classList.add('turn');
+      div.classList.add(`role-${role.trim()}`);
+  
+      const thinkingDetails = document.createElement('details');
+      thinkingDetails.classList.add('hidden');
+      const summary = document.createElement('summary');
+      summary.textContent = 'Thinking...';
+      thinkingDetails.classList.add('thinking');
+      thinkingDetails.setAttribute('open', 'true');
+      const thinking = document.createElement('div');
+      thinkingDetails.append(thinking);
+      div.append(thinkingDetails);
+      const text = document.createElement('div');
+      text.className = 'text';
+      text.textContent = message;
+      div.append(text);
+  
+      if (role === 'system-ask') {
+        const btn = document.createElement('button');
+        btn.textContent = 'Improve';
+        div.appendChild(btn);
+        btn.addEventListener('click', () => {
+          // remove button
+          div.removeChild(btn);
+  
+          // call model
+          this.sendMessageAction(message, 'SYSTEM');
+        });
+      }
+  
+      this.messages.push(div);
+      this.requestUpdate();
+  
+      this.scrollToTheEnd();
+  
+      return {thinking, text};
+    }
+  
+    scrollToTheEnd() {
+      if (!this.anchor) return;
+      this.anchor.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
+  
+    async sendMessageAction(message?: string, role?: string) {
+      if (this.chatState !== ChatState.IDLE) return;
+  
+      this.chatState = ChatState.GENERATING;
+  
+      let msg = '';
+      if (message) {
+        msg = message.trim();
+      } else {
+        // get message and empty the field
+        msg = this.inputMessage.trim();
+        this.inputMessage = '';
+      }
+  
+      if (msg.length === 0) {
+        this.chatState = ChatState.IDLE;
+        return;
+      }
+  
+      const msgRole = role ? role.toLowerCase() : 'user';
+  
+      if (msgRole === 'user' && msg) {
+        this.addMessage(msgRole, msg);
+      }
+  
+      if (this.sendMessageHandler) {
+        await this.sendMessageHandler(
+          msg,
+          msgRole,
+          this.code,
+          this.codeHasChanged,
+        );
+        this.codeHasChanged = false;
+      }
+  
+      this.chatState = ChatState.IDLE;
+    }
+  
+    private async playAction() {
+      if (this.isRunning) return;
+      if (this.codeHasChanged) {
+        this.runCode(this.code);
+      }
+      this.isRunning = true;
+      this.previewFrame.contentWindow.postMessage('resume', '*');
+    }
+  
+    private async stopAction() {
+      if (!this.isRunning) return;
+      this.isRunning = false;
+      this.previewFrame.contentWindow.postMessage('stop', '*');
+    }
+  
+    private async clearAction() {
+      this.setCode(this.defaultCode);
+      this.messages = [];
+      this.codeHasChanged = true;
+      if (this.resetHandler) {
+        this.resetHandler();
+      }
+    }
+  
+    private async codeEditedAction(code: string) {
+      if (this.chatState !== ChatState.IDLE) return;
+  
+      this.code = code;
+      this.codeHasChanged = true;
+      this.codeNeedsReload = true;
+  
+      this.codeSyntax.innerHTML = await marked.parse(
+        '```javascript\n' + code + '\n```',
+      );
+    }
+  
+    private async inputKeyDownAction(e: KeyboardEvent) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.sendMessageAction();
+      }
+    }
+  
+    private async reloadCodeAction() {
+      this.runCode(this.code);
+      this.isRunning = true;
+    }
+  
+    render() {
+      return html`<div class="playground">
+        <div class="sidebar">
+          <div class="selector">
+            <button
+              id="geminiTab"
+              class=${classMap({
+                'selected-tab': this.selectedChatTab === ChatTab.GEMINI,
+              })}
+              @click=${() => {
+                this.selectedChatTab = ChatTab.GEMINI;
+              }}>
+              Gemini
+            </button>
+            <button
+              id="codeTab"
+              class=${classMap({
+                'selected-tab': this.selectedChatTab === ChatTab.CODE,
+              })}
+              @click=${() => {
+                this.selectedChatTab = ChatTab.CODE;
+              }}>
+              Code ${this.codeHasChanged ? ICON_EDIT : html``}
+            </button>
+          </div>
+          <div
+            id="chat"
+            class=${classMap({
+              'tabcontent': true,
+              'showtab': this.selectedChatTab === ChatTab.GEMINI,
+            })}>
+            <div class="chat-messages">
+              ${this.messages}
+              <div id="anchor"></div>
+            </div>
+  
+            <div class="footer">
+              <div
+                id="chatStatus"
+                class=${classMap({'hidden': this.chatState === ChatState.IDLE})}>
+                ${this.chatState === ChatState.GENERATING
+                  ? html`${ICON_BUSY} Generating...`
+                  : html``}
+                ${this.chatState === ChatState.THINKING
+                  ? html`${ICON_BUSY} Thinking...`
+                  : html``}
+                ${this.chatState === ChatState.CODING
+                  ? html`${ICON_BUSY} Coding...`
+                  : html``}
+              </div>
+              <div id="inputArea">
+                <input
+                  type="text"
+                  id="messageInput"
+                  .value=${this.inputMessage}
+                  @input=${(e: InputEvent) => {
+                    this.inputMessage = (e.target as HTMLInputElement).value;
+                  }}
+                  @keydown=${(e: KeyboardEvent) => {
+                    this.inputKeyDownAction(e);
+                  }}
+                  placeholder="Type your message..."
+                  autocomplete="off" />
+                <button
+                  id="sendButton"
+                  class=${classMap({
+                    'disabled': this.chatState !== ChatState.IDLE,
+                  })}
+                  @click=${() => {
+                    this.sendMessageAction();
+                  }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="30px"
+                    viewBox="0 -960 960 960"
+                    width="30px"
+                    fill="currentColor">
+                    <path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            id="editor"
+            class=${classMap({
+              'tabcontent': true,
+              'showtab': this.selectedChatTab === ChatTab.CODE,
+            })}>
+            <div class="code-container">
+              ${this.codeSyntax}
+              <textarea
+                class="code-editor"
+                contenteditable=""
+                .value=${this.code}
+                .readonly=${this.chatState !== ChatState.IDLE}
+                @keyup=${(e: KeyboardEvent) => {
+                  const val = (e.target as HTMLTextAreaElement).value;
+                  if (this.code !== val) {
+                    this.codeEditedAction(val);
+                    this.requestUpdate();
+                  }
+                }}
+                @change=${(e: InputEvent) => {
+                  this.codeEditedAction((e.target as HTMLTextAreaElement).value);
+                }}></textarea>
+            </div>
+          </div>
+        </div>
+  
+        <div class="main-container">
+          ${this.previewFrame}
+          <div class="toolbar">
+            <button
+              id="reloadCode"
+              @click=${() => {
+                this.reloadCodeAction();
+              }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30px"
+                viewBox="0 -960 960 960"
+                width="30px"
+                fill="currentColor">
+                <path
+                  d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+              </svg>
+              <div class="button-label">
+                <p>Reload</p>
+                <div
+                  id="reloadTooltip"
+                  class="button-tooltip ${classMap({
+                    'show-tooltip': this.codeNeedsReload,
+                  })}">
+                  <p>Reload code changes</p>
+                </div>
+              </div>
+            </button>
+            <button
+              id="runCode"
+              class=${classMap({'disabled': this.isRunning})}
+              @click=${() => {
+                this.playAction();
+              }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="55px"
+                viewBox="0 -960 960 960"
+                width="55px"
+                fill="currentColor">
+                <path
+                  d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
+              </svg>
+            </button>
+            <button
+              id="stop"
+              class=${classMap({'disabled': !this.isRunning})}
+              @click=${() => {
+                this.stopAction();
+              }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="55px"
+                viewBox="0 -960 960 960"
+                width="55px"
+                fill="currentColor">
+                <path
+                  d="M320-320h320v-320H320v320ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
+              </svg>
+            </button>
+            <button
+              id="clear"
+              @click=${() => {
+                this.clearAction();
+              }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30px"
+                viewBox="0 -960 960 960"
+                width="30px"
+                fill="currentColor">
+                <path
+                  d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Z" />
+              </svg>
+              <div class="button-label">
+                <p>Reset</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>`;
+    }
+  }
+
+--- FILE: p5js-playground/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
+
+--- FILE: react-example/README.md ---
+Size: 535 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/react-example
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: react-example/index.css ---
+Size: 47 bytes
+Summary: (none)
+Content: |
+  h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+
+--- FILE: react-example/index.html ---
+Size: 454 bytes
+Summary: (none)
+Content: |
+  <!doctype html>
+  <html>
+  <head><link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+        "react": "https://esm.sh/react@^19.0.0",
+        "react/": "https://esm.sh/react@^19.0.0/",
+        "react-dom/": "https://esm.sh/react-dom@^19.0.0/"
+      }
+    }
+  </script>
+  <div id="root"></div>
+  
+  <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: react-example/index.tsx ---
+Size: 886 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  import {GoogleGenAI} from '@google/genai';
+  import {useEffect, useState} from 'react';
+  import ReactDOM from 'react-dom/client';
+  
+  function App() {
+    const [message, setMessage] = useState('');
+  
+    useEffect(() => {
+      const ai = [REDACTED_HIGH_ENTROPY]
+  
+      const generateGreeting = async () => {
+        const response = await ai.models.generateContentStream({
+          model: 'gemini-2.5-flash',
+          contents: 'Write a friendly greeting with a 😊',
+        });
+  
+        let greeting = '';
+        for await (const chunk of response) {
+          greeting += chunk.text;
+        }
+        setMessage(greeting);
+      };
+  
+      generateGreeting();
+    }, []);
+  
+    return (
+      <div>
+        <h1>{message}</h1>
+      </div>
+    );
+  }
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+
+--- FILE: react-example/metadata.json ---
+Size: 80 bytes
+Summary: Keys: name, description
+Content: |
+  {
+    "name": "React example",
+    "description": "Example React app using Gemini"
+  }
+
+--- FILE: react-example/package.json ---
+Size: 440 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "react-example",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@google/genai": "^0.7.0",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      "@vitejs/plugin-react": "^5.0.0",
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: react-example/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
+
+--- FILE: spinnerevolve/App.tsx ---
+Size: 26417 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import React, { useState, useEffect, useRef, useMemo } from 'react';
+  import { P5Canvas, P5CanvasRef } from './components/P5Canvas';
+  import { Terminal, parsePartialJson } from './components/Terminal';
+  import { generateNextSpinner } from './services/geminiService';
+  import { generateExportPack } from './utils/exportService'; 
+  import { SpinnerData, CandidateState } from './types';
+  
+  // Initial seed code: Material Design 3 Circular Progress Indicator
+  const PROGENITOR_CODE = `
+    p.setup = () => {
+      p.createCanvas(400, 400);
+      p.colorMode(p.HSB, 360, 100, 100);
+      p.noFill();
+      p.strokeCap(p.ROUND);
+      p.strokeWeight(20);
+    };
+  
+    p.draw = () => {
+      p.clear(); // Transparent background
+      p.translate(p.width / 2, p.height / 2);
+  
+      const t = p.millis(); // Continuous time
+      
+      // 1. Continuous Rotation
+      // Rotate steadily over time
+      p.rotate(t * 0.0005);
+  
+      // 2. Breathing Arc
+      // Sine wave creates a natural infinite loop without jumps
+      const sineVal = p.sin(t * 0.002);
+      
+      const minLen = p.radians(20);
+      const maxLen = p.radians(280);
+      const arcLen = p.map(sineVal, -1, 1, minLen, maxLen);
+      
+      // 3. Dynamic Offset
+      const easeOffset = p.map(sineVal, -1, 1, 0, p.PI * 0.5);
+      p.rotate(easeOffset);
+  
+      // 4. Color Cycle
+      const hue = (t * 0.05) % 360;
+      p.stroke(hue, 80, 100);
+      
+      p.arc(0, 0, 300, 300, 0, arcLen);
+    };
+  `;
+  
+  const PROGENITOR_DATA: SpinnerData = {
+    id: 1,
+    mutationName: "Material Kinetic",
+    reasoning: "The Progenitor. A perfect loop based on Material Design 3's indeterminate progress indicator. Features variable arc length, elastic rotation, and full-spectrum HSB cycling.",
+    p5Code: PROGENITOR_CODE,
+    timestamp: Date.now(),
+    generationTimeMs: 0,
+    tokensPerSecond: 0,
+    totalTokens: 0,
+    tpsHistory: [],
+  };
+  
+  // --- Overlay Component for Streaming Text ---
+  const StreamingOverlay = ({ buffer, isVisible, accentColor }: { buffer: string, isVisible: boolean, accentColor: string }) => {
+      const data = useMemo(() => parsePartialJson(buffer), [buffer]);
+      
+      // We only render if visible OR if there is content (to allow fade out)
+      if (!isVisible && !buffer) return null;
+  
+      return (
+          <div 
+              className={`absolute inset-0 z-50 p-4 md:p-8 flex flex-col pointer-events-none transition-all duration-500 ease-out bg-black/90 backdrop-blur-sm
+              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+          >
+              {/* Inner container handles instant content hide when generation stops, preventing visual clash */}
+              <div className={`flex flex-col h-full transition-opacity ${isVisible ? 'opacity-100 duration-500' : 'opacity-0 duration-0'}`}>
+                  <div className="flex-none mb-4 space-y-2">
+                       <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full animate-pulse ${accentColor}`} />
+                          <span className={`text-[10px] font-mono uppercase tracking-widest ${accentColor}`}>
+                              Generating Mutation...
+                          </span>
+                       </div>
+                       {data.mutationName && (
+                           <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight leading-none animate-in fade-in slide-in-from-left-2 duration-300">
+                               {data.mutationName}
+                           </h2>
+                       )}
+                       {data.reasoning && (
+                           <p className="text-xs md:text-sm text-neutral-400 italic font-serif leading-relaxed animate-in fade-in slide-in-from-left-2 delay-100 duration-500 border-l-2 border-neutral-800 pl-3">
+                               {data.reasoning}
+                           </p>
+                       )}
+                  </div>
+                  
+                  <div className="flex-1 min-h-0 relative mt-2 rounded border border-neutral-900 bg-neutral-950/50 overflow-hidden">
+                      <pre className="absolute inset-0 p-4 text-[10px] font-mono text-neutral-500 leading-relaxed overflow-hidden whitespace-pre-wrap break-all opacity-70">
+                          {/* We only show the last 1000 chars to create a 'terminal stream' effect without scrolling */}
+                          {data.p5Code || buffer.slice(-500) || "Initializing..."}
+                          <span className={`inline-block w-2 h-4 align-middle ml-1 bg-white animate-pulse`} />
+                      </pre>
+                  </div>
+              </div>
+          </div>
+      );
+  };
+  
+  export default function App() {
+    const [history, setHistory] = useState<SpinnerData[]>([PROGENITOR_DATA]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    
+    const [candidates, setCandidates] = useState<{ a: CandidateState; b: CandidateState } | null>(null);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
+    
+    const [exportState, setExportState] = useState<{ variant: 'a' | 'b', progress: number } | null>(null);
+  
+    const [generationStartTime, setGenerationStartTime] = useState<number>(0);
+    
+    // Mobile UI State
+    const [mobileTab, setMobileTab] = useState<'a' | 'b'>('a');
+    const touchStartRef = useRef<number>(0);
+    
+    const candidatesRef = useRef<{ a: CandidateState; b: CandidateState } | null>(null);
+    const canvasARef = useRef<P5CanvasRef>(null);
+    const canvasBRef = useRef<P5CanvasRef>(null);
+  
+    // LOGIC CHANGE: 
+    // We allow currentIndex to go one step beyond history length (index == history.length) 
+    // IF there are active candidates. This "phantom" slot represents the "Creation Zone".
+    // This decoupling allows us to view the "Head" (index == history.length - 1) as a static history item.
+    const isSelectionMode = candidates !== null && currentIndex === history.length;
+    const currentHistorySpinner = history[currentIndex];
+  
+    // Safety clamp: If candidates disappear (e.g. error) and we are in phantom slot, retreat.
+    useEffect(() => {
+        if (!candidates && currentIndex >= history.length) {
+            setCurrentIndex(Math.max(0, history.length - 1));
+        }
+    }, [candidates, history.length, currentIndex]);
+  
+    // Reset mobile tab when new candidates are generated
+    useEffect(() => {
+        if (candidates) {
+            setMobileTab('a');
+        }
+    }, [candidates]);
+  
+    const handleEvolve = async (seedOverride?: SpinnerData) => {
+      if (isGenerating) return;
+  
+      setIsGenerating(true);
+      setGenerationStartTime(performance.now());
+      
+      const initialCandidateState = { buffer: "", data: null, tpsHistory: [] };
+      const newCandidates = {
+          a: { ...initialCandidateState },
+          b: { ...initialCandidateState }
+      };
+      setCandidates(newCandidates);
+      candidatesRef.current = newCandidates;
+  
+      const seedSpinner = seedOverride || history[history.length - 1];
+      const seedCode = seedSpinner ? seedSpinner.p5Code : null;
+      const nextId = (Math.max(...history.map(h => h.id), seedSpinner?.id || 0)) + 1;
+  
+      try {
+        const promiseA = generateNextSpinner(seedCode, nextId, (text) => updateCandidateStream('a', text));
+        const promiseB = generateNextSpinner(seedCode, nextId, (text) => updateCandidateStream('b', text));
+  
+        const [resultA, resultB] = await Promise.all([promiseA, promiseB]);
+  
+        setCandidates(prev => {
+            if (!prev) return null;
+            return {
+                a: { ...prev.a, data: { ...resultA, tpsHistory: [...prev.a.tpsHistory] } },
+                b: { ...prev.b, data: { ...resultB, tpsHistory: [...prev.b.tpsHistory] } }
+            };
+        });
+  
+      } catch (error) {
+        console.error("Evolution failed", error);
+        setCandidates(null);
+      } finally {
+        setIsGenerating(false);
+      }
+    };
+  
+    const updateCandidateStream = (variant: 'a' | 'b', text: string) => {
+      setCandidates(prev => {
+          if (!prev) return null;
+          const updated = {
+              ...prev,
+              [variant]: { ...prev[variant], buffer: text }
+          };
+          candidatesRef.current = updated;
+          return updated;
+      });
+    };
+  
+    const handleStart = () => {
+        setHasStarted(true);
+        handleEvolve();
+        setCurrentIndex(1); // Jump to the new phantom slot
+    };
+  
+    const handleSelect = (variant: 'a' | 'b') => {
+        if (!candidates || !candidates[variant].data) return;
+        if (exportState) return;
+        
+        const winner = candidates[variant].data!;
+        setHistory(prev => [...prev, winner]);
+        setCurrentIndex(prev => prev + 1); // Move to the NEXT phantom slot
+        handleEvolve(winner);
+    };
+  
+    const handleKeyDown = (e: React.KeyboardEvent, variant: 'a' | 'b') => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (!isGenerating && candidates?.[variant].data && !exportState) {
+                handleSelect(variant);
+            }
+        }
+    };
+  
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartRef.current = e.touches[0].clientX;
+    };
+  
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (!isSelectionMode) return;
+        const touchEnd = e.changedTouches[0].clientX;
+        const diff = touchStartRef.current - touchEnd;
+        const threshold = 50; // min px to be considered a swipe
+  
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                // Swipe Left -> Go Next (A -> B)
+                setMobileTab('b');
+            } else {
+                // Swipe Right -> Go Prev (B -> A)
+                setMobileTab('a');
+            }
+        }
+    };
+  
+    // Telemetry Recorder
+    useEffect(() => {
+      let interval: any;
+      if (isGenerating) {
+          interval = setInterval(() => {
+              const now = performance.now();
+              const elapsedSeconds = (now - generationStartTime) / 1000;
+              
+              if (elapsedSeconds > 0 && candidatesRef.current) {
+                  const lenA = candidatesRef.current.a.buffer.length / 4; 
+                  const tpsA = lenA / elapsedSeconds;
+                  
+                  const lenB = candidatesRef.current.b.buffer.length / 4;
+                  const tpsB = lenB / elapsedSeconds;
+  
+                  candidatesRef.current.a.tpsHistory.push(tpsA);
+                  candidatesRef.current.b.tpsHistory.push(tpsB);
+  
+                  setCandidates(prev => {
+                      if (!prev) return null;
+                      return {
+                          a: { ...prev.a, tpsHistory: [...prev.a.tpsHistory, tpsA] },
+                          b: { ...prev.b, tpsHistory: [...prev.b.tpsHistory, tpsB] }
+                      };
+                  });
+              }
+          }, 100);
+      }
+      return () => clearInterval(interval);
+    }, [isGenerating, generationStartTime]);
+  
+    const actions = {
+        onPrev: () => setCurrentIndex(c => Math.max(0, c - 1)),
+        onNext: () => setCurrentIndex(c => Math.min(candidates ? history.length : history.length - 1, c + 1)),
+        onMutate: () => {
+            handleEvolve();
+            setCurrentIndex(history.length); // Jump to phantom slot
+        }, 
+    };
+  
+    const hasApiKey = !!process.env.API_KEY;
+  
+    if (!hasApiKey) {
+        return (
+            <div className="min-h-screen bg-black text-neutral-400 flex items-center justify-center p-8 font-mono">
+                <div className="max-w-md text-center space-y-4">
+                    <h1 className="text-xl font-bold text-white">SYSTEM_HALT</h1>
+                    <p>API_KEY missing. Process terminated.</p>
+                </div>
+            </div>
+        )
+    }
+  
+    const isInteractive = !isGenerating && !exportState;
+    const maxIndex = candidates ? history.length : history.length - 1;
+  
+    return (
+      <div className="h-screen bg-[#020202] text-neutral-400 font-sans flex flex-col overflow-hidden relative">
+        <style>{`
+          @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-gradient-text {
+              background-size: 200% 200%;
+              animation: gradientFlow 5s ease infinite;
+          }
+        `}</style>
+  
+        {/* GLOBAL HEADER */}
+        <div className="flex-none h-14 flex items-center justify-between px-3 md:px-4 bg-black border-b border-neutral-900 z-20">
+              <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0 mr-2">
+                   <span className="font-bold tracking-tight text-xs sm:text-sm hidden sm:inline-block">
+                       <span className="text-neutral-100">Spinner</span>
+                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 animate-gradient-text">Evolve</span>
+                   </span>
+                   <div className="h-4 w-px bg-neutral-800 hidden sm:block"></div>
+                   <div className="text-[9px] md:text-[10px] text-neutral-500 uppercase tracking-widest font-mono truncate">
+                      {!hasStarted ? "" : (isSelectionMode ? "Gemini 3 Flash Live Coding" : `History: ${currentIndex + 1}/${history.length}`)}
+                   </div>
+              </div>
+  
+              {hasStarted && (
+                  <div className="flex gap-2 flex-none">
+                      <button 
+                          onClick={actions.onPrev}
+                          disabled={currentIndex === 0}
+                          className="h-8 w-8 flex items-center justify-center bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 rounded disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-white focus:outline-none focus:ring-2 focus:ring-neutral-700"
+                      >
+                          &lt;
+                      </button>
+                      
+                      <button 
+                          onClick={isSelectionMode ? undefined : actions.onMutate}
+                          disabled={isSelectionMode || isGenerating || !!exportState}
+                          className={`
+                              h-8 px-3 md:px-4 font-bold text-[9px] md:text-[10px] uppercase rounded border transition-all duration-300 tracking-wider flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black
+                              ${isSelectionMode 
+                                  ? 'bg-neutral-900 border-neutral-800 text-neutral-500 cursor-default opacity-50' 
+                                  : 'bg-white hover:bg-neutral-200 border-white text-black shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                              }
+                          `}
+                      >
+                          {isGenerating 
+                              ? "PROCESSING..." 
+                              : (isSelectionMode ? <span className="hidden md:inline">SELECT ON CANVAS</span> : "EVOLVE")
+                          }
+                          {isSelectionMode && <span className="md:hidden">SELECT</span>}
+                      </button>
+  
+                      <button 
+                          onClick={actions.onNext}
+                          disabled={currentIndex === maxIndex}
+                          className="h-8 w-8 flex items-center justify-center bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 rounded disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-white focus:outline-none focus:ring-2 focus:ring-neutral-700"
+                      >
+                          &gt;
+                      </button>
+                  </div>
+              )}
+        </div>
+  
+        {/* VISUALS */}
+        {/* We use lg:flex-row to ensure tablets (often < 1024px) get the mobile view */}
+        <div 
+          className="flex-1 min-h-0 bg-black shadow-[0_0_50px_rgba(0,0,0,0.8)_inset] flex flex-col lg:flex-row border-b border-neutral-900 z-10 relative"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {!isSelectionMode ? (
+              // SINGLE VIEW
+              <div className="w-full h-full relative flex items-center justify-center">
+                  <P5Canvas code={currentHistorySpinner?.p5Code || ""} />
+                  
+                  {hasStarted && currentIndex < maxIndex && (
+                       <div className="absolute bottom-8 right-8 pointer-events-none">
+                          <span className="text-[10px] text-neutral-500 uppercase tracking-widest bg-neutral-900/80 px-2 py-1 rounded">
+                              New Generation Ready &rarr;
+                          </span>
+                       </div>
+                  )}
+              </div>
+          ) : (
+              // SPLIT VIEW
+              <>
+                  {/* Mobile Navigation Controls */}
+                  <div className="lg:hidden absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-2 pointer-events-none">
+                      <button 
+                           onClick={(e) => { e.stopPropagation(); setMobileTab('a'); }}
+                           className={`pointer-events-auto p-3 bg-neutral-900/80 text-white rounded-full border border-neutral-700 shadow-lg backdrop-blur-sm transition-all active:scale-95 ${mobileTab === 'a' ? 'opacity-0 cursor-default' : 'opacity-100'}`}
+                           aria-label="Previous Variant"
+                      >
+                           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                      </button>
+                      
+                      <button 
+                           onClick={(e) => { e.stopPropagation(); setMobileTab('b'); }}
+                           className={`pointer-events-auto p-3 bg-neutral-900/80 text-white rounded-full border border-neutral-700 shadow-lg backdrop-blur-sm transition-all active:scale-95 ${mobileTab === 'b' ? 'opacity-0 cursor-default' : 'opacity-100'}`}
+                           aria-label="Next Variant"
+                      >
+                          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      </button>
+                  </div>
+                  
+                  {/* Mobile Tab Indicators */}
+                  <div className="lg:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-40 flex gap-2 pointer-events-none">
+                      <div className={`w-1.5 h-1.5 rounded-full transition-colors ${mobileTab === 'a' ? 'bg-white' : 'bg-neutral-800'}`} />
+                      <div className={`w-1.5 h-1.5 rounded-full transition-colors ${mobileTab === 'b' ? 'bg-white' : 'bg-neutral-800'}`} />
+                  </div>
+  
+                  {/* Variant A */}
+                  {/* On mobile (< lg), only show if mobileTab is 'a'. On desktop (lg+), always show. */}
+                  <div 
+                      onClick={() => isInteractive && candidates?.a.data && handleSelect('a')}
+                      onKeyDown={(e) => handleKeyDown(e, 'a')}
+                      tabIndex={isInteractive && candidates?.a.data ? 0 : -1}
+                      role="button"
+                      aria-label="Select Variant A"
+                      className={`relative flex-1 border-b lg:border-b-0 lg:border-r border-neutral-900 flex-col items-center justify-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/50 
+                      ${mobileTab === 'b' ? 'hidden lg:flex' : 'flex'}`}
+                  >
+                      <div className={`absolute inset-0 bg-neutral-950/80 opacity-0 ${exportState ? '' : 'group-hover:opacity-100 group-focus-visible:opacity-100'} transition-opacity duration-300 z-30 flex items-center justify-center backdrop-grayscale`}>
+                          <span className="text-white font-mono text-sm tracking-[0.2em] uppercase border border-white/20 px-4 py-2 bg-black/50 backdrop-blur-md rounded">
+                              Select Variant A
+                          </span>
+                      </div>
+  
+                      {/* Streaming Overlay A */}
+                      {candidates && (
+                          <StreamingOverlay 
+                              buffer={candidates.a.buffer} 
+                              isVisible={isGenerating} 
+                              accentColor="bg-blue-500 text-blue-500" 
+                          />
+                      )}
+  
+                      {candidates?.a.data ? (
+                           <div className="w-full h-full flex items-center justify-center p-4 md:p-8 transition-all duration-500 group-hover:scale-105 group-focus-visible:scale-105 group-hover:opacity-40 group-focus-visible:opacity-40">
+                               <P5Canvas ref={canvasARef} code={candidates.a.data.p5Code} />
+                           </div>
+                      ) : (
+                           // Fallback loader
+                           !isGenerating && (
+                              <div className="flex flex-col items-center gap-4 opacity-50">
+                                  <span className="text-xs font-mono text-neutral-700">Waiting for stream...</span>
+                              </div>
+                           )
+                      )}
+                  </div>
+  
+                  {/* Variant B */}
+                  <div 
+                      onClick={() => isInteractive && candidates?.b.data && handleSelect('b')}
+                      onKeyDown={(e) => handleKeyDown(e, 'b')}
+                      tabIndex={isInteractive && candidates?.b.data ? 0 : -1}
+                      role="button"
+                      aria-label="Select Variant B"
+                      className={`relative flex-1 flex-col items-center justify-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500/50
+                      ${mobileTab === 'a' ? 'hidden lg:flex' : 'flex'}`}
+                  >
+                      <div className={`absolute inset-0 bg-neutral-950/80 opacity-0 ${exportState ? '' : 'group-hover:opacity-100 group-focus-visible:opacity-100'} transition-opacity duration-300 z-30 flex items-center justify-center backdrop-grayscale`}>
+                          <span className="text-white font-mono text-sm tracking-[0.2em] uppercase border border-white/20 px-4 py-2 bg-black/50 backdrop-blur-md rounded">
+                              Select Variant B
+                          </span>
+                      </div>
+  
+                      {/* Streaming Overlay B */}
+                      {candidates && (
+                          <StreamingOverlay 
+                              buffer={candidates.b.buffer} 
+                              isVisible={isGenerating} 
+                              accentColor="bg-purple-500 text-purple-500" 
+                          />
+                      )}
+  
+                      {candidates?.b.data ? (
+                           <div className="w-full h-full flex items-center justify-center p-4 md:p-8 transition-all duration-500 group-hover:scale-105 group-focus-visible:scale-105 group-hover:opacity-40 group-focus-visible:opacity-40">
+                               <P5Canvas ref={canvasBRef} code={candidates.b.data.p5Code} />
+                           </div>
+                      ) : (
+                           !isGenerating && (
+                              <div className="flex flex-col items-center gap-4 opacity-50">
+                                  <span className="text-xs font-mono text-neutral-700">Waiting for stream...</span>
+                              </div>
+                           )
+                      )}
+                  </div>
+              </>
+          )}
+        </div>
+  
+        {/* CONSOLE / DATA VIEW */}
+        {/* Adjusted height: Auto-height (flex-none) when running to minimize empty space, fixed height for start screen to fit content */}
+        <div className={`${!hasStarted ? 'h-[40vh]' : 'flex-none'} bg-[#080808] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 relative transition-[height] duration-500`}>
+          <Terminal 
+              currentData={currentHistorySpinner}
+              candidates={candidates}
+              isGenerating={isGenerating}
+              generationStartTime={generationStartTime}
+              history={history}
+              currentIndex={currentIndex}
+              isSelectionMode={isSelectionMode}
+              mobileTab={mobileTab}
+              allowInteraction={hasStarted}
+          />
+  
+          {/* LANDING OVERLAY */}
+          {!hasStarted && (
+              <div className="absolute inset-0 bg-black/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-6 z-50 border-t border-neutral-800">
+                  <div className="animate-in fade-in zoom-in duration-700 slide-in-from-bottom-4 flex flex-col items-center">
+                      <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tighter max-w-4xl leading-none">
+                          SPINNER <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 animate-gradient-text">EVOLVE</span>
+                      </h1>
+                      
+                      <p className="text-sm md:text-base text-neutral-400 max-w-xl mb-8 leading-relaxed font-light">
+                          A new way to develop. A/B test real-time code generations.
+                          <br />
+                          <span className="text-white font-medium">Gemini 3 Flash</span> evolves the perfect loading spinner.
+                          <br />
+                          <span className="text-neutral-500 italic text-xs mt-2 block">So fast you barely need a loading spinner!</span>
+                      </p>
+  
+                      <button 
+                          onClick={handleStart}
+                          className="px-8 py-3 bg-white hover:bg-neutral-200 text-black font-bold text-xs tracking-[0.2em] rounded-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ring-offset-2 ring-offset-black focus:ring-2 focus:ring-white outline-none"
+                      >
+                          START EVOLVING
+                      </button>
+                      
+                      <div className="mt-8 text-[10px] text-neutral-600 font-mono uppercase tracking-widest hover:text-neutral-500 transition-colors">
+                          Created by <a href="https://x.com/leslienooteboom" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-neutral-800 hover:decoration-neutral-500">@leslienooteboom</a>
+                      </div>
+                  </div>
+              </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+--- FILE: spinnerevolve/README.md ---
+Size: 536 bytes
+Summary: Headers: Run and deploy your AI Studio app, Run Locally
+Content: |
+  <div align="center">
+  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  </div>
+  
+  # Run and deploy your AI Studio app
+  
+  This contains everything you need to run your app locally.
+  
+  View your app in AI Studio: https://ai.studio/apps/bundled/spinner_evolve
+  
+  ## Run Locally
+  
+  **Prerequisites:**  Node.js
+  
+  
+  1. Install dependencies:
+     `npm install`
+  2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key= [REDACTED_HIGH_ENTROPY]
+  3. Run the app:
+     `npm run dev`
+
+--- FILE: spinnerevolve/components/P5Canvas.tsx ---
+Size: 6640 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
+  
+  // Declare p5 globally since we loaded it via CDN
+  declare global {
+    interface Window {
+      p5: any;
+    }
+  }
+  
+  export interface P5CanvasRef {
+      downloadGif: () => void;
+      downloadPng: (filename: string, size?: number) => void;
+  }
+  
+  interface P5CanvasProps {
+    code: string;
+  }
+  
+  export const P5Canvas = forwardRef<P5CanvasRef, P5CanvasProps>(({ code }, ref) => {
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLDivElement>(null);
+    const p5InstanceRef = useRef<any>(null);
+    const [scale, setScale] = useState(1);
+  
+    useImperativeHandle(ref, () => ({
+      downloadGif: () => {
+          if (p5InstanceRef.current) {
+              // Saves a 4-second loop. 
+              // 'silent: true' suppresses the default p5.js loading screen (the flower).
+              try {
+                  // We record 4 seconds to match the 4000ms loop enforced in the prompt
+                  p5InstanceRef.current.saveGif('spinner_loop', 4, { silent: true });
+              } catch (e) {
+                  console.error("GIF generation failed", e);
+              }
+          }
+      },
+      downloadPng: (filename: string, size?: number) => {
+          const p = p5InstanceRef.current;
+          if (!p) return;
+  
+          // If no size is specified, or size matches canvas, save directly
+          if (!size || size === 400) {
+              p.saveCanvas(filename, 'png');
+          } else {
+              // Create an offscreen graphics buffer to resize the output
+              // This is crucial for creating cursor-sized (32x32, 48x48) assets from the 400x400 source
+              const pg = p.createGraphics(size, size);
+              pg.clear();
+              
+              // Draw the current canvas content onto the smaller buffer
+              // p.get() captures the current frame as an image
+              pg.image(p.get(), 0, 0, size, size);
+              
+              // Save the buffer using the main instance's save method
+              p.save(pg, filename + '.png');
+              
+              // Cleanup
+              pg.remove();
+          }
+      }
+    }));
+  
+    // Resize observer to handle scaling for smaller screens and layout changes
+    useEffect(() => {
+      if (!wrapperRef.current) return;
+  
+      const updateScale = () => {
+        if (wrapperRef.current) {
+          const { width, height } = wrapperRef.current.getBoundingClientRect();
+          // The base size is 400x400. Calculate scale to fit.
+          const minDimension = Math.min(width, height);
+          
+          // Subtract minimal padding (30px total, 15px per side) from dimension to ensure breathing room
+          // while maximizing size.
+          const safeDimension = Math.max(0, minDimension - 30);
+          
+          // Calculate scale, allowing up to 2.0x for large screens to really fill the space
+          const newScale = Math.min(safeDimension / 400, 2.0); 
+          setScale(Math.max(0.1, newScale)); // Prevent negative or zero scale
+        }
+      };
+  
+      const resizeObserver = new ResizeObserver(() => {
+          // Wrap in requestAnimationFrame to avoid "ResizeObserver loop limit exceeded"
+          requestAnimationFrame(updateScale);
+      });
+  
+      resizeObserver.observe(wrapperRef.current);
+      updateScale(); // Initial check
+  
+      return () => resizeObserver.disconnect();
+    }, []);
+  
+    useEffect(() => {
+      if (!canvasRef.current || !window.p5) return;
+  
+      // Cleanup previous instance
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
+  
+      try {
+        // Sanitize the code: remove markdown backticks if present
+        const cleanCode = code.replace(/```javascript/g, '').replace(/```/g, '').trim();
+  
+        // Create a wrapper function for the sketch
+        // We wrap the AI generated code (which is the body) into a function (p) => { ... }
+        // eslint-disable-next-line no-new-func
+        const sketchFunction = new Function('p', cleanCode);
+  
+        // Initialize p5 in instance mode
+        // CRITICAL FIX: Append to canvasRef.current (inner div), not wrapperRef (outer div)
+        p5InstanceRef.current = new window.p5((p: any) => {
+          // Safe defaults if the AI forgets them
+          p.setup = () => {
+            p.createCanvas(400, 400);
+            p.clear(); // Ensure transparent start
+          };
+          
+          // Execute the AI code which should override setup/draw
+          try {
+              sketchFunction(p);
+  
+              // Wrap p.draw to catch RUNTIME errors (like maxDepth undefined)
+              // The AI defines p.draw inside sketchFunction. We need to intercept it.
+              const originalDraw = p.draw;
+              if (originalDraw) {
+                  p.draw = () => {
+                      try {
+                          originalDraw();
+                      } catch (drawErr) {
+                          console.error("Runtime error in p5 draw loop:", drawErr);
+                          p.noLoop(); // Stop the loop to save CPU
+                          p.clear();
+                          p.translate(0, 0); // Reset matrix
+                          p.fill(255, 50, 50);
+                          p.noStroke();
+                          p.textAlign(p.CENTER, p.CENTER);
+                          p.textSize(16);
+                          p.text("RUNTIME_ERR", 200, 180);
+                          p.textSize(10);
+                          p.text((drawErr as Error).message.substring(0, 40), 200, 210);
+                      }
+                  }
+              }
+          } catch (e) {
+              console.error("Error executing generated p5 code:", e);
+              p.clear();
+              p.fill(150);
+              p.noStroke();
+              p.textAlign(p.LEFT, p.TOP);
+              p.textSize(12);
+              p.text("RENDER_ERR", 10, 10);
+          }
+        }, canvasRef.current);
+      } catch (err) {
+        console.error("Failed to compile p5 code:", err);
+      }
+  
+      return () => {
+        if (p5InstanceRef.current) {
+          p5InstanceRef.current.remove();
+        }
+      };
+    }, [code]);
+  
+    return (
+      <div className="w-full h-full flex items-center justify-center overflow-hidden" ref={wrapperRef}>
+          <div 
+            ref={canvasRef}
+            style={{ 
+              width: '400px', 
+              height: '400px', 
+              transform: `scale(${scale})`,
+              transformOrigin: 'center center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'transform 0.3s ease-out' // Smooth scaling transition
+            }}
+          >
+              {/* The p5 canvas injects itself here */}
+          </div>
+      </div>
+    );
+  });
+  P5Canvas.displayName = 'P5Canvas';
+
+--- FILE: spinnerevolve/components/StatsChart.tsx ---
+Size: 6318 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import React, { useState, useEffect, useRef } from 'react';
+  import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+  
+  interface StatsChartProps {
+    data: number[]; // Array of TPS values (every 100ms)
+    label?: string;
+    isLive?: boolean;
+  }
+  
+  export const StatsChart: React.FC<StatsChartProps> = ({ data, label, isLive }) => {
+    // We use this ref for the immediate parent of ResponsiveContainer
+    const chartWrapperRef = useRef<HTMLDivElement>(null);
+    const [shouldRender, setShouldRender] = useState(false);
+    
+    const hasData = data && data.length > 0;
+  
+    useEffect(() => {
+      // If we don't have data, the wrapper div isn't rendered, so we can't observe it.
+      // When hasData becomes true, this effect needs to run again to attach the observer.
+      const el = chartWrapperRef.current;
+      if (!el) return;
+  
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          // Use contentRect for precise sizing box
+          const { width, height } = entry.contentRect;
+          
+          // Only render Recharts if we have valid dimensions.
+          if (width > 0 && height > 0) {
+              // We use requestAnimationFrame to avoid "ResizeObserver loop limit exceeded" 
+              // and ensure we render in sync with the browser paint.
+              requestAnimationFrame(() => {
+                  setShouldRender(true);
+              });
+          } else {
+              setShouldRender(false);
+          }
+        }
+      });
+  
+      resizeObserver.observe(el);
+      
+      return () => resizeObserver.disconnect();
+    }, [hasData]); // Added hasData dependency so we re-attach when the "NO DATA" state changes
+  
+    // Convert simple array to object array for Recharts
+    const chartData = hasData ? data.map((val, idx) => ({
+      time: parseFloat((idx * 0.1).toFixed(1)),
+      tps: val
+    })) : [];
+  
+    return (
+      <div className="w-full h-full bg-neutral-900/50 rounded p-0 border border-neutral-800 flex flex-col min-w-0 relative">
+        
+        {!hasData ? (
+           <div className="absolute inset-0 flex items-center justify-center text-[10px] text-neutral-600 font-mono">
+              NO DATA
+           </div>
+        ) : (
+          <>
+              {/* Live Badge */}
+              <div className="absolute top-2 right-2 flex items-center gap-1 z-10 pointer-events-none">
+                  {isLive && (
+                      <>
+                          <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                          <span className="text-[9px] text-white font-mono tracking-wider">LIVE</span>
+                      </>
+                  )}
+              </div>
+              
+              {/* 
+                  Ref attached to direct parent. 
+                  Added w-full h-full and overflow-hidden to ensure strict containment.
+              */}
+              <div ref={chartWrapperRef} className="flex-1 min-h-0 w-full h-full overflow-hidden">
+                  {shouldRender && (
+                      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0} debounce={50}>
+                          <AreaChart data={chartData} margin={{ top: 15, right: 0, bottom: 0, left: 0 }}>
+                          <defs>
+                              <linearGradient id="colorTps" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#ffffff" stopOpacity={0.2}/>
+                              <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
+                              </linearGradient>
+                          </defs>
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#222" />
+                          <XAxis 
+                              dataKey="time" 
+                              type="number"
+                              domain={['dataMin', 'dataMax']}
+                              tick={false} 
+                              axisLine={{ stroke: '#333' }}
+                              tickLine={false}
+                              padding={{ left: 0, right: 0 }}
+                              label={{ 
+                                  value: 'SECONDS', 
+                                  position: 'insideBottom', 
+                                  offset: 15, 
+                                  fill: '#444', 
+                                  fontSize: 9, 
+                                  fontWeight: 700 
+                              }}
+                          />
+                          <YAxis 
+                              width={24}
+                              tick={false} 
+                              axisLine={true}
+                              tickLine={false}
+                              domain={['dataMin', 'dataMax']}
+                              label={{ 
+                                  value: 'TOKENS', 
+                                  angle: -90, 
+                                  position: 'insideLeft', 
+                                  offset: 8,
+                                  dy: 10,
+                                  fill: '#444', 
+                                  fontSize: 9, 
+                                  fontWeight: 700 
+                              }}
+                          />
+                          <Tooltip 
+                              contentStyle={{ backgroundColor: '#050505', border: '1px solid #333', color: '#fff', fontSize: '10px', borderRadius: '4px' }}
+                              itemStyle={{ color: '#ffffff' }}
+                              cursor={{ stroke: '#ffffff', strokeWidth: 1 }}
+                              formatter={(value: number) => [value.toFixed(1), "TPS"]}
+                              labelFormatter={(label: number) => `${label.toFixed(1)}s`}
+                              isAnimationActive={false}
+                          />
+                          <Area 
+                              type="monotone" 
+                              dataKey="tps" 
+                              stroke="#666" 
+                              strokeWidth={1}
+                              fillOpacity={1} 
+                              fill="url(#colorTps)" 
+                              isAnimationActive={false}
+                          />
+                          </AreaChart>
+                      </ResponsiveContainer>
+                  )}
+              </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
+--- FILE: spinnerevolve/components/Terminal.tsx ---
+Size: 18336 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import React, { useEffect, useState, useMemo, useRef } from 'react';
+  import { SpinnerData, CandidateState } from '../types';
+  import { StatsChart } from './StatsChart';
+  
+  // --- Helper Functions ---
+  
+  export const parsePartialJson = (jsonStr: string) => {
+      const result = { mutationName: "", reasoning: "", p5Code: "" };
+      
+      // Helper to extract value safely
+      const extract = (key: string) => {
+          // 1. Strict Match: Try to find key and value with a closing quote (completed field)
+          // We use [^"]* to ensure we stop at the first closing quote
+          const strictRegex = [REDACTED_HIGH_ENTROPY]
+          const strictMatch = jsonStr.match(strictRegex);
+          if (strictMatch) return strictMatch[1];
+  
+          // 2. Loose Match: If not found, try to find key and take everything until end of string (streaming field)
+          // This only matches if the string ENDS inside the value (no closing quote found)
+          const looseRegex = [REDACTED_HIGH_ENTROPY]
+          const looseMatch = jsonStr.match(looseRegex);
+          if (looseMatch) return looseMatch[1];
+          
+          return "";
+      };
+  
+      result.mutationName = extract("mutationName");
+      result.reasoning = extract("reasoning");
+      
+      // p5Code extraction
+      let codeRaw = extract("p5Code");
+      if (codeRaw) {
+          result.p5Code = codeRaw
+              .replace(/\\n/g, '\n')
+              .replace(/\\"/g, '"')
+              .replace(/\\\\/g, '\\')
+              .replace(/\\t/g, '  ');
+      }
+  
+      return result;
+  };
+  
+  // --- Sub-Component: TerminalPanel ---
+  
+  interface TerminalPanelProps {
+      data: SpinnerData | null;
+      streamBuffer: string;
+      isGenerating: boolean;
+      tpsHistory: number[];
+      generationStartTime: number;
+      label: string;
+      labelColorClass: string;
+      showControls?: boolean;
+      overlayPosition?: string;
+      className?: string;
+      allowInteraction?: boolean;
+  }
+  
+  const TerminalPanel: React.FC<TerminalPanelProps> = ({
+      data,
+      streamBuffer,
+      isGenerating,
+      tpsHistory,
+      generationStartTime,
+      label,
+      labelColorClass,
+      showControls,
+      overlayPosition = "inset-x-0",
+      className = "",
+      allowInteraction = true
+  }) => {
+      const [liveElapsed, setLiveElapsed] = useState(0);
+      const [isCodeOpen, setIsCodeOpen] = useState(false);
+      const codeScrollRef = useRef<HTMLPreElement>(null);
+      const lastValidCodeRef = useRef<string>("");
+  
+      // Live timer & Auto-Open/Collapse Logic
+      useEffect(() => {
+          let interval: any;
+          if (isGenerating) {
+              setIsCodeOpen(true); // Automatically expand to show streaming
+              interval = setInterval(() => {
+                  setLiveElapsed(performance.now() - generationStartTime);
+              }, 50);
+          } else {
+              setIsCodeOpen(false); // Automatically collapse when done
+              setLiveElapsed(0);
+          }
+          return () => clearInterval(interval);
+      }, [isGenerating, generationStartTime]);
+  
+      // Reset last valid code when starting a new generation
+      useEffect(() => {
+          if (isGenerating && streamBuffer.length < 10) {
+              lastValidCodeRef.current = "";
+          }
+      }, [generationStartTime, isGenerating, streamBuffer]);
+  
+      // Derived Display Data
+      const displayData = useMemo(() => {
+          if (isGenerating && streamBuffer) {
+              return parsePartialJson(streamBuffer);
+          }
+          return data || { mutationName: "", reasoning: "", p5Code: "" };
+      }, [isGenerating, streamBuffer, data]);
+  
+      // Cache valid code to prevent flashing when the parser returns empty during a tricky chunk
+      if (displayData.p5Code) {
+          lastValidCodeRef.current = displayData.p5Code;
+      }
+      const codeToDisplay = displayData.p5Code || lastValidCodeRef.current;
+  
+      // Auto-scroll logic
+      useEffect(() => {
+          if (isCodeOpen && codeScrollRef.current) {
+              codeScrollRef.current.scrollTop = codeScrollRef.current.scrollHeight;
+          }
+      }, [codeToDisplay, isCodeOpen]);
+  
+      const liveAvgTps = isGenerating && liveElapsed > 0 
+          ? ((streamBuffer.length / 4) / (liveElapsed / 1000)).toFixed(1)
+          : "0.0";
+      
+      const totalTokens = isGenerating 
+          ? Math.round(streamBuffer.length / 4) 
+          : (data?.totalTokens || 0);
+          
+      const timeValue = isGenerating 
+          ? (liveElapsed / 1000).toFixed(1)
+          : (data?.generationTimeMs ? (data.generationTimeMs / 1000).toFixed(1) : "0.0");
+  
+      const tpsValue = isGenerating ? liveAvgTps : data?.tokensPerSecond || 0;
+  
+      const handleDownload = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          const code = data?.p5Code;
+          if (!code) return;
+      
+          const blob = new Blob([code], { type: 'text/javascript' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          
+          const safeName = (data?.mutationName || 'spinner').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+          link.download = `spinner_${data?.id || 'gen'}_${safeName}.js`;
+          link.href = url;
+          
+          document.body.appendChild(link);
+          link.click();
+          
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+      };
+  
+      return (
+          <div className={`flex-1 flex flex-col justify-end min-w-0 bg-[#0a0a0a] border-r border-neutral-900/50 last:border-r-0 relative group overflow-hidden ${className}`}>
+              
+              {/* 
+                  CODE OVERLAY (Fixed Position to break out of containers) 
+                  Sits behind metrics (z-30) but covers spinner.
+              */}
+              <div 
+                  className={`fixed ${overlayPosition} top-14 bottom-0 bg-[#050505]/95 backdrop-blur-md z-30 transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] flex flex-col pt-0 pb-56 md:pb-80 px-0 border-b border-neutral-800
+                  ${isCodeOpen ? 'translate-y-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)]' : 'translate-y-[calc(100%+20px)]'}`}
+              >
+                   {/* NEW HEADER in Overlay (Acts as Collapse Trigger) */}
+                   <div 
+                      onClick={() => setIsCodeOpen(false)}
+                      className="flex-none h-10 flex items-center justify-between px-3 md:px-6 border-b border-neutral-800 cursor-pointer select-none bg-neutral-900/40 hover:bg-neutral-900 transition-colors group/header"
+                  >
+                      <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-neutral-500 rotate-180 transition-colors group-hover/header:text-neutral-400">
+                              ▲
+                          </span>
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 group-hover/header:text-neutral-200 transition-colors">
+                              Collapse Code Stream
+                          </span>
+                          {isGenerating && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse ml-2" />}
+                      </div>
+  
+                      <div className="flex items-center gap-4">
+                          {codeToDisplay && <span className="text-[10px] font-mono text-neutral-600 hidden sm:inline">{codeToDisplay.length} bytes</span>}
+                          {showControls && data?.p5Code && (
+                              <button 
+                                  onClick={handleDownload}
+                                  disabled={!allowInteraction}
+                                  tabIndex={allowInteraction ? 0 : -1}
+                                  className="flex items-center gap-2 px-2 py-0.5 rounded bg-neutral-900 hover:bg-neutral-800 text-neutral-500 hover:text-white transition-all text-[9px] uppercase tracking-wider font-medium border border-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                              >
+                                  <span>JS</span>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                              </button>
+                          )}
+                      </div>
+                   </div>
+  
+                   <pre 
+                      ref={codeScrollRef}
+                      className="flex-1 overflow-auto custom-scrollbar text-[10px] md:text-xs leading-relaxed text-neutral-400 font-mono whitespace-pre-wrap break-all p-4 md:px-8 bg-[#0a0a0a]"
+                   >
+                      <code>{codeToDisplay || "// Spinner code generating..."}</code>
+                  </pre>
+              </div>
+  
+              {/* 
+                  BOTTOM CONTROL GROUP (Z-40 to stay above the code overlay)
+              */}
+              <div className="relative z-40 bg-black shadow-[0_-10px_40px_rgba(0,0,0,0.8)] border-t border-neutral-900 flex flex-col max-h-full">
+                  
+                  {/* TRIGGER BAR (EXPAND) */}
+                  <div 
+                      onClick={() => setIsCodeOpen(true)}
+                      className={`flex-none h-8 flex items-center justify-between px-3 md:px-6 bg-neutral-900/40 hover:bg-neutral-900 border-b border-neutral-900 cursor-pointer select-none transition-all duration-300 group/trigger
+                      ${isCodeOpen ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'}`}
+                  >
+                      <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-neutral-500 transition-transform duration-300">
+                              ▲
+                          </span>
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-600 group-hover/trigger:text-neutral-400 transition-colors">
+                              Expand Code Stream
+                          </span>
+                      </div>
+  
+                      {showControls && data?.p5Code && (
+                          <button 
+                              onClick={handleDownload}
+                              disabled={!allowInteraction}
+                              tabIndex={allowInteraction ? 0 : -1}
+                              className="flex items-center gap-2 px-2 py-0.5 rounded bg-neutral-900 hover:bg-neutral-800 text-neutral-500 hover:text-white transition-all text-[9px] uppercase tracking-wider font-medium border border-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                              <span>JS</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          </button>
+                      )}
+                  </div>
+  
+                  {/* INFO & DESCRIPTION */}
+                  <div className="flex-shrink min-h-0 overflow-y-auto px-4 md:px-6 pt-3 pb-2 transition-all duration-500 bg-black custom-scrollbar max-h-32 md:max-h-40">
+                       <div className="flex items-center gap-2 md:gap-3 mb-1">
+                          <span className={`text-[8px] md:text-[9px] font-bold uppercase tracking-widest px-1.5 py-px rounded bg-neutral-900 border border-neutral-800 ${labelColorClass}`}>
+                              {label}
+                          </span>
+                          <h2 className="text-sm md:text-base font-bold text-neutral-200 tracking-tight leading-none truncate">
+                              {displayData.mutationName || "..."}
+                          </h2>
+                      </div>
+                      <p className="text-[9px] md:text-[10px] text-neutral-500 leading-relaxed font-medium max-w-3xl">
+                          {displayData.reasoning || "..."}
+                      </p>
+                  </div>
+  
+                  {/* METRICS ROW */}
+                  <div className="flex-none grid grid-cols-3 divide-x divide-neutral-900 border-y border-neutral-900 mt-2 bg-black">
+                      <div className="p-2 md:p-4 flex flex-col justify-end items-end text-right">
+                          <span className="text-[8px] md:text-[9px] text-neutral-600 uppercase tracking-[0.2em] mb-1">Time</span>
+                          <div className="flex items-baseline gap-1 justify-end w-full">
+                              <span className="text-lg sm:text-2xl md:text-4xl xl:text-5xl font-light text-white font-mono tracking-tighter">
+                                  {timeValue}
+                              </span>
+                              <span className="text-[10px] md:text-xs text-neutral-600 font-mono">s</span>
+                          </div>
+                      </div>
+                      <div className="p-2 md:p-4 flex flex-col justify-end items-end text-right">
+                          <span className="text-[8px] md:text-[9px] text-neutral-600 uppercase tracking-[0.2em] mb-1">Speed</span>
+                          <div className="flex items-baseline gap-1 justify-end w-full">
+                              <span className={`text-lg sm:text-2xl md:text-4xl xl:text-5xl font-light font-mono tracking-tighter ${isGenerating ? 'text-blue-400 animate-pulse' : 'text-white'}`}>
+                                  {tpsValue}
+                              </span>
+                              <span className="text-[10px] md:text-xs text-neutral-600 font-mono">tps</span>
+                          </div>
+                      </div>
+                      <div className="p-2 md:p-4 flex flex-col justify-end items-end text-right">
+                          <span className="text-[8px] md:text-[9px] text-neutral-600 uppercase tracking-[0.2em] mb-1">Tokens</span>
+                          <div className="flex items-baseline gap-1 justify-end w-full">
+                              <span className="text-lg sm:text-2xl md:text-4xl xl:text-5xl font-light text-white font-mono tracking-tighter">
+                                  {totalTokens}
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+  
+                  {/* CHART */}
+                  <div className="flex-none h-20 md:h-28 w-full bg-neutral-900/10 relative bg-black">
+                       <StatsChart data={tpsHistory} label="" isLive={isGenerating} />
+                  </div>
+              </div>
+          </div>
+      );
+  };
+  
+  // --- Main Container ---
+  
+  interface TerminalProps {
+    currentData: SpinnerData | null;
+    candidates: { a: CandidateState; b: CandidateState } | null;
+    
+    isGenerating: boolean;
+    generationStartTime: number;
+    history: SpinnerData[];
+    currentIndex: number;
+    
+    isSelectionMode: boolean;
+    mobileTab?: 'a' | 'b'; 
+    allowInteraction?: boolean;
+  }
+  
+  export const Terminal: React.FC<TerminalProps> = ({ 
+      currentData,
+      candidates,
+      isGenerating,
+      generationStartTime,
+      history,
+      currentIndex,
+      isSelectionMode,
+      mobileTab = 'a',
+      allowInteraction = true
+  }) => {
+    return (
+      <div className="flex flex-col h-full bg-[#0a0a0a] font-mono text-sm border-t border-neutral-800">
+          <style>{`
+              .custom-scrollbar::-webkit-scrollbar {
+                  width: 6px;
+                  height: 6px;
+              }
+              .custom-scrollbar::-webkit-scrollbar-track {
+                  background: transparent;
+              }
+              .custom-scrollbar::-webkit-scrollbar-thumb {
+                  background: #262626;
+                  border-radius: 3px;
+              }
+              .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                  background: #404040;
+              }
+          `}</style>
+  
+          {/* --- CONTENT AREA (SPLIT OR SINGLE) --- */}
+          <div className="flex-1 flex flex-row overflow-hidden">
+              {isSelectionMode && candidates ? (
+                  <>
+                      <TerminalPanel 
+                          data={candidates.a.data}
+                          streamBuffer={candidates.a.buffer}
+                          isGenerating={isGenerating}
+                          tpsHistory={candidates.a.tpsHistory}
+                          generationStartTime={generationStartTime}
+                          label="VARIANT A"
+                          labelColorClass="text-blue-400 border-blue-900/50 bg-blue-900/10"
+                          showControls={!isGenerating}
+                          overlayPosition="left-0 w-full lg:w-1/2 border-r border-neutral-900"
+                          className={`${mobileTab === 'b' ? 'hidden lg:flex' : 'flex'}`}
+                          allowInteraction={allowInteraction}
+                      />
+                      <div className="w-px bg-neutral-900 flex-none z-10 hidden lg:block" />
+                      <TerminalPanel 
+                          data={candidates.b.data}
+                          streamBuffer={candidates.b.buffer}
+                          isGenerating={isGenerating}
+                          tpsHistory={candidates.b.tpsHistory}
+                          generationStartTime={generationStartTime}
+                          label="VARIANT B"
+                          labelColorClass="text-purple-400 border-purple-900/50 bg-purple-900/10"
+                          showControls={!isGenerating}
+                          overlayPosition="right-0 w-full lg:w-1/2"
+                          className={`${mobileTab === 'a' ? 'hidden lg:flex' : 'flex'}`}
+                          allowInteraction={allowInteraction}
+                      />
+                  </>
+              ) : (
+                  <TerminalPanel 
+                      data={currentData}
+                      streamBuffer=""
+                      isGenerating={false}
+                      tpsHistory={currentData?.tpsHistory || []}
+                      generationStartTime={0}
+                      label={`GEN ${currentData?.id || 1}`}
+                      labelColorClass="text-white border-neutral-700 bg-neutral-800"
+                      showControls={true}
+                      overlayPosition="inset-x-0"
+                      allowInteraction={allowInteraction}
+                  />
+              )}
+          </div>
+      </div>
+    );
+  };
+
+--- FILE: spinnerevolve/index.css ---
+Size: 0 bytes
+Summary: (none)
+Content: |
+
+--- FILE: spinnerevolve/index.html ---
+Size: 942 bytes
+Summary: (none)
+Content: |
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Spinner Evolution Engine</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script type="importmap">
+  {
+    "imports": {
+      "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+      "react/": "https://aistudiocdn.com/react@^19.2.1/",
+      "react": "https://aistudiocdn.com/react@^19.2.1",
+      "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+      "jszip": "https://esm.run/jszip",
+      "file-saver": "https://esm.sh/file-saver@2.0.5"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/index.css">
+  </head>
+    <body>
+      <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+  </html>
+
+--- FILE: spinnerevolve/index.tsx ---
+Size: 408 bytes
+Summary: (none)
+Content: |
+  /**
+   * @license
+   * SPDX-License-Identifier: Apache-2.0
+  */
+  
+  import React from 'react';
+  import ReactDOM from 'react-dom/client';
+  import App from './App';
+  
+  const rootElement = document.getElementById('root');
+  if (!rootElement) {
+    throw new Error("Could not find root element to mount to");
+  }
+  
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+
+--- FILE: spinnerevolve/metadata.json ---
+Size: 194 bytes
+Summary: Keys: name, description, requestFramePermissions
+Content: |
+  {
+    "name": "SpinnerEvolve",
+    "description": "A new way to develop - A/B test real-time code generations. Gemini 3 Flash evolves the perfect loading spinner.",
+    "requestFramePermissions": []
+  }
+
+--- FILE: spinnerevolve/package.json ---
+Size: 517 bytes
+Summary: Keys: name, private, version, type, scripts, dependencies, devDependencies
+Content: |
+  {
+    "name": "spinnerevolve",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "recharts": "^3.5.1",
+      "react-dom": "^19.2.1",
+      "react": "^19.2.1",
+      "@google/genai": "^1.31.0",
+      "jszip": "latest",
+      "file-saver": "2.0.5"
+    },
+    "devDependencies": {
+      "@types/node": "^22.14.0",
+      "@vitejs/plugin-react": "^5.0.0",
+      "typescript": "~5.8.2",
+      "vite": "^6.2.0"
+    }
+  }
+
+--- FILE: spinnerevolve/tsconfig.json ---
+Size: 542 bytes
+Summary: Keys: compilerOptions
+Content: |
+  {
+    "compilerOptions": {
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "skipLibCheck": true,
+      "types": [
+        "node"
+      ],
+      "moduleResolution": "bundler",
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      },
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    }
+  }
