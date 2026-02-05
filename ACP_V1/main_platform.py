@@ -28,11 +28,11 @@ sys.path.extend(
 )
 
 # --- Imports from sub-systems ---------------------------------------------
-from canonical_code_platform_port.core.canon_db import init_db  # type: ignore
+from core.canon.canon_db import init_db  # type: ignore
 from ACP_V1.brain.workflow_analyzer import WorkflowAnalyzer  # type: ignore
 
 try:
-    from Ingest_pipeline_V4r.core.retrieval_controller import (  # type: ignore
+    from tooling.ingest.core.retrieval_controller import (  # type: ignore
         RetrievalController,
     )
 except Exception:

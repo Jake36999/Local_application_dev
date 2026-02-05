@@ -10,7 +10,7 @@ def test_shadow_logging():
     print("🕵️  Starting Shadow Observer Test...")
     
     # 1. Setup DB Connection for logging
-    conn = sqlite3.connect("project_meta.db")
+    conn = sqlite3.connect("memory/sql/project_meta.db")
     cursor = conn.cursor()
     
     def db_logger(event, payload):

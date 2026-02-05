@@ -43,7 +43,7 @@ async def init_system():
             d.mkdir(parents=True, exist_ok=True)
             created.append(str(d.relative_to(ACP_ROOT)))
     # Ensure DB
-    db_path = ACP_ROOT / "memory" / "sql" / "project_meta.db"
+    db_path = ACP_ROOT / "memory" / "sql" / "memory/sql/project_meta.db"
     db_exists = db_path.exists()
     if not db_exists:
         conn = sqlite3.connect(db_path)

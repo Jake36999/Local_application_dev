@@ -45,7 +45,7 @@ def self_healing_tool(func):
     return wrapper
 
 def get_db():
-    db_path = os.path.join(ROOT_DIR, "memory", "sql", "project_meta.db")
+    db_path = os.path.join(ROOT_DIR, "memory", "sql", "memory/sql/project_meta.db")
     return sqlite3.connect(db_path, check_same_thread=False)
 
 @mcp.tool()

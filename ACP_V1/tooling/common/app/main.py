@@ -10,7 +10,7 @@ from .schemas import IngestRequest, IngestResponse, ScanRequest, ScanResponse, B
 from .tool_registry import TOOLKIT_MANIFEST
 
 # Creates the DB file if it doesn't exist (global connection)
-db_conn = sqlite3.connect("project_meta.db", check_same_thread=False)
+db_conn = sqlite3.connect("memory/sql/project_meta.db", check_same_thread=False)
 
 app = FastAPI(
     title="Aletheia Content Intake Bus",

@@ -1,7 +1,7 @@
 import sqlite3
 
 def init_db():
-    conn = sqlite3.connect("project_meta.db")
+    conn = sqlite3.connect("memory/sql/project_meta.db")
     cursor = conn.cursor()
     
     # 1. Table for "Deep AST" (Canon Scanner)
@@ -29,7 +29,7 @@ def init_db():
     
     conn.commit()
     conn.close()
-    print("✅ Database initialized: 'project_meta.db' with tables [canon_components, dependencies]")
+    print("✅ Database initialized: 'memory/sql/project_meta.db' with tables [canon_components, dependencies]")
 
 if __name__ == "__main__":
     init_db()

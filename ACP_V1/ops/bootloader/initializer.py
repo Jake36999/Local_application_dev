@@ -46,7 +46,7 @@ class SystemInitializer:
 
     def hydrate_databases(self) -> str:
         """Ensures the SQLite DB exists and has the base schema."""
-        db_path = self.root / "memory/sql/project_meta.db"
+        db_path = self.root / "memory/sql/memory/sql/project_meta.db"
         
         # Ensure parent dir exists
         db_path.parent.mkdir(parents=True, exist_ok=True)

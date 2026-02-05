@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd  # type: ignore
 
 def view_data():
-    conn = sqlite3.connect("project_meta.db")
+    conn = sqlite3.connect("memory/sql/project_meta.db")
     cursor = conn.cursor()
     
     print("\n--- 🧠 CAPTURED KNOWLEDGE (Canon Components) ---")

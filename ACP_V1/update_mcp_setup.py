@@ -50,7 +50,7 @@ except ImportError:
 mcp = FastMCP("Aletheia Factory Manager")
 
 def get_db():
-    return sqlite3.connect("project_meta.db", check_same_thread=False)
+    return sqlite3.connect("memory/sql/project_meta.db", check_same_thread=False)
 
 @mcp.tool()
 def read_system_state() -> str:

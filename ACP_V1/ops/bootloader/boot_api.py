@@ -1,17 +1,23 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pathlib import Path
 import logging
 import sys
 import os
 
+
 # --- Path Setup ---
 # Calculate Root: ACP_V1/ops/bootloader -> ../../ -> ACP_V1
 ROOT_DIR = Path(__file__).resolve().parents[2]
-sys.path.append(str(ROOT_DIR))
+if str(ROOT_DIR) not in sys.path:
+    sys.path.append(str(ROOT_DIR))
 
 from ops.bootloader.initializer import SystemInitializer
 from ops.bootloader.dep_manager import DependencyManager
+from core.graph_transformer import router as graph_router
+from core.lens_manager import router as lens_router
+from api.ws_runner import router as ws_runner_router
 
 # --- Logging ---
 log_path = ROOT_DIR / "logs/bootloader.log"
@@ -24,7 +30,21 @@ logging.basicConfig(
 logger = logging.getLogger("acp.api")
 
 # --- App Definition ---
+
+
 app = FastAPI(title="ACP Bootloader", version="1.0")
+
+# --- 🔓 CORS CONFIGURATION (The Bridge) ---
+# --- CORS CONFIGURATION (The Bridge) ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (Safe for local dev)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ------------------------------------------
+
 initializer = SystemInitializer(ROOT_DIR)
 dep_man = DependencyManager(ROOT_DIR)
 
@@ -40,7 +60,17 @@ class HealthResponse(BaseModel):
     binaries: dict
     database: bool
 
+
+# --- Register Routers ---
+app.include_router(graph_router)
+app.include_router(lens_router)
+app.include_router(ws_runner_router)
+
 # --- Endpoints ---
+
+@app.get("/")
+def read_root():
+    return {"status": "Aletheia API Online"}
 
 @app.post("/system/init", response_model=InitResponse)
 async def initialize_system():
@@ -94,6 +124,10 @@ async def get_config():
     if cfg_path.exists():
         return {"source": str(cfg_path), "content_preview": cfg_path.read_text()[:500]}
     return {"error": "Config missing"}
+
+app.include_router(graph_router)
+app.include_router(lens_router)
+app.include_router(ws_runner_router)
 
 if __name__ == "__main__":
     import uvicorn

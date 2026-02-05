@@ -20,6 +20,16 @@ import re
 import sys
 from typing import Any, Dict, List, Literal, Optional, TypedDict
 
+# --- Bundle Validator Import ---
+import importlib.util
+import traceback
+SCHEMA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../core/schemas.py'))
+spec = importlib.util.spec_from_file_location("schemas", SCHEMA_PATH)
+if spec is None or spec.loader is None:
+    raise ImportError(f"Could not load module spec or loader for schemas.py at {SCHEMA_PATH}")
+schemas = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(schemas)
+
 
 MAX_FILE_SIZE_BYTES = 1_500_000
 IGNORE_EXTENSIONS = [
@@ -409,8 +419,26 @@ def main() -> None:
     if not root_path.exists():
         sys.exit(f"Error: path does not exist: {root_path}")
 
+
     packager = WorkspacePackager(root_path)
     bundle_content = packager.run(args.format)
+
+    # --- Validate JSON bundle if applicable ---
+    if args.format == "json":
+        try:
+            bundle_dict = json.loads(bundle_content)
+            valid = True
+            for file in bundle_dict.get("files", []):
+                if not schemas.validate_bundle_item(file):
+                    valid = False
+            if not valid:
+                print("\n❌ Bundle validation failed. Output will not be saved.")
+                sys.exit(1)
+            else:
+                print("\n✅ Bundle schema validation passed.")
+        except Exception as e:
+            print(f"\n❌ Exception during bundle validation: {e}\n{traceback.format_exc()}")
+            sys.exit(1)
 
     if args.output:
         out_path = pathlib.Path(args.output)

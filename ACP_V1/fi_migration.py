@@ -77,14 +77,14 @@ if (Test-Path "$Root\Context_State") {
 # --- 7. Database Consolidation ---
 Write-Host "🧠 Moving Knowledge Bases..." -ForegroundColor Yellow
 $DBCandidates = @(
-    "$Root\project_meta.db",
+    "$Root\memory/sql/project_meta.db",
     "$Root\canonical_code_platform_port\canon.db",
     "$Root\canon.db"
 )
 $DBMoved = $false
 foreach ($DB in $DBCandidates) {
     if (Test-Path $DB) {
-        Copy-Item $DB "$TargetRoot\memory\sql\project_meta.db" -Force
+        Copy-Item $DB "$TargetRoot\memory\sql\memory/sql/project_meta.db" -Force
         Write-Host "   > Installed SQL Brain from: $(Split-Path $DB -Leaf)" -ForegroundColor Green
         $DBMoved = $true
         break
