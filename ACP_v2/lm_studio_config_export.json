@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "aletheia": {
+            "command": "python",
+            "args": [
+                "C:/Users/jakem/Documents/Aletheia_project/Local_application_dev/aletheia_mcp.py"
+            ],
+            "env": {
+                "PYTHONPATH": "C:/Users/jakem/Documents/Aletheia_project/Local_application_dev/ACP_v2"
+            }
+        }
+    }
+}

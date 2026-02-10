@@ -1,0 +1,8 @@
+security_level: medium
+prohibitions:
+  - "Do not use 'latest' tags in Docker images; always specify versions."
+  - "Do not hardcode secrets in YAML/JSON outputs; use variable placeholders."
+  - "Do not generate configurations that run containers as root."
+validation_rules:
+  - "validate_yaml_schema"
+  - "check_resource_limits"

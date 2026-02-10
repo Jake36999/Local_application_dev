@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug ACP Backend",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/analysis/main_platform.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "COLLECTION_TRACES": "traces",
+                "NUM_RETRIEVAL_RESULTS": "5"
+            }
+        },
+        {
+            "name": "Debug Aletheia MCP Server",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/aletheia_mcp.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
+}

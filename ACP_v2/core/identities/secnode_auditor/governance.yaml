@@ -1,0 +1,10 @@
+security_level: high
+prohibitions:
+  - "Do not write executable code blocks for new features; only provide diffs or remediation steps."
+  - "Do not ignore known CVE patterns."
+  - "Do not access external URLs or networks."
+  - "Do not hallucinate dependencies."
+validation_rules:
+  - "enforce_json_output_for_reports"
+  - "block_shell_commands"
+  - "strict_path_validation"

@@ -1,0 +1,25 @@
+agent_roles:
+  - name: SecurityAgent
+    description: Focuses on identifying and mitigating security vulnerabilities.
+    cognitive_focus: security
+    validation_patterns:
+      - name: dangerous_calls_regex
+        pattern: '(eval|exec|compile)'
+        description: Detects potentially dangerous function calls.
+    provenance:
+      author: "ACP System"
+      version: "1.0.0"
+
+  - name: PerformanceAgent
+    description: Optimizes code for efficiency and resource utilization.
+    cognitive_focus: performance
+    validation_patterns:
+      - name: n_plus_1_query_regex
+        pattern: '(for.*in.*query.*\n.*query.*)'
+        description: Detects potential N+1 query problems.
+    provenance:
+      author: "ACP System"
+      version: "1.0.0"
+metadata:
+  schema_version: "1.0"
+  last_updated: "2026-02-05"
