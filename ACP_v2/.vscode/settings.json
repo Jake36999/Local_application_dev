@@ -1,4 +1,0 @@
-{
-    "python.analysis.useLibraryCodeForTypes": true,
-    "python.analysis.stubPath": "./typings"
-}

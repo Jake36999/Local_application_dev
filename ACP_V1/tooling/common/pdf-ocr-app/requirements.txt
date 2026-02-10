@@ -1,5 +1,0 @@
-fitz
-pillow
-pytesseract
-opencv-python
-numpy

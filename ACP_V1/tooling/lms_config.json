@@ -1,5 +1,0 @@
-{
-    "context_length": 262144,
-    "kv_cache_quantization_enabled": false,
-    "compact_prompts_enabled": true
-}
